@@ -6,6 +6,7 @@
       <router-link to="/button">Button</router-link> |
       <router-link to="/select">Select</router-link> |
       <router-link to="/input">Input</router-link> |
+      <router-link to="/radio">Radio</router-link> |
     </nav>
     <router-view />
   </div>
