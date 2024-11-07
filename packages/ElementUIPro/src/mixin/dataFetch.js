@@ -1,48 +1,31 @@
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
 import {
-	effectFingerprint,
-	request,
-	validateEffect
+	effectFingerprint
 } from './tool';
 
 export default {
 	props: {
 		fetch: Function,
 		effectKey: [String, Array],
-		wait: Number,
-		URL: String,//支持模板语法
-		method: String,
-		params: Object, //支持.访问符
-		data: Object, //支持.访问符
+		wait: Number
 	},
 	data() {
 		return {
 			ops: [],
+			loading: false
 		};
 	},
 	computed: {
 		isEffect() {
-			return effectFingerprint(this.model, this.effectKey, this.getCtxValue)
+			return effectFingerprint(this.model, this.effectKey);
 		}
 	},
 	watch: {
 		isEffect: {
 			immediate: true,
-			handler(val, oldValue) {
-				if (val != oldValue && validateEffect(val)) {
-					if (this.model && this.fetch) {
-						this.modelEffectHandler(this.model)
-					}
-					if (this.URL) {
-						request(this.model, this)
-							.then(({ data, code }) => {
-								if (code === 200) {
-									this.ops = data;
-								} else {
-									throw Error('request error')
-								}
-							})
-					}
+			handler() {
+				if(this.model && this.fetch) {
+					this.modelEffectHandler(this.model)
 				}
 			}
 		}
@@ -60,7 +43,8 @@ export default {
 				this.loading = true;
 				this.ops = await this.fetch(val);
 				this.loading = false;
-			} catch (error) {
+			} catch(error) {
+				console.error('model effect handle error', error)
 				this.loading = false;
 			}
 		},
