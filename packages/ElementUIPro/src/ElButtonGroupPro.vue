@@ -1,18 +1,18 @@
 <template>
-  <div class="inline">
+  <el-button-group>
     <template v-for="(item, index) in buttons">
       <ElButtonPro
         :key="index"
         v-if="item.if ?? true"
-        v-bind="omit(item, 'if', 'listeners', 'label', '')"
+        v-bind="omit(item, 'if', 'listeners', 'label')"
         v-on="item.listeners"
       >
-        <slot :name="label">
+        <slot :name="item.label">
           {{ item.label }}
         </slot>
       </ElButtonPro>
     </template>
-  </div>
+  </el-button-group>
 </template>
 
 <script>
@@ -23,7 +23,6 @@ export default {
   components: { ElButtonPro },
   props: {
     buttons: Array,
-    scope: Object,
   },
   data() {
     return {};

@@ -22,10 +22,11 @@ export default {
 	},
 	watch: {
 		isEffect: {
-			immediate: true,
 			handler() {
 				if(this.model && this.fetch) {
-					this.modelEffectHandler(this.model)
+					// remove before value
+					this.valueSetter(undefined);
+					this.modelEffectHandler(this.model);
 				}
 			}
 		}
@@ -35,7 +36,12 @@ export default {
 			this.modelEffectHandler,
 			this.wait || 700,
 			{ trailing: true, leading: true }
-		)
+		);
+	},
+	mounted() {
+		if(this.fetch) {
+			this.modelEffectHandler();
+		}
 	},
 	methods: {
 		async modelEffectHandler(val) {
