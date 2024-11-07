@@ -1,9 +1,8 @@
 <template>
   <el-select
-    ref="item"
     :value="valueGetter(model)"
-    v-on="$listeners"
     v-bind="$attrs"
+    v-on="$listeners"
     @input="handleInput"
   >
     <template #prefix>
@@ -13,7 +12,7 @@
       <slot name="empty"></slot>
     </template>
     <el-option
-      v-for="(ops, index) in selectOps"
+      v-for="(ops, index) in innerOptions"
       :key="index"
       :label="ops[optionKey.label]"
       :value="ops[optionKey.value]"
@@ -42,7 +41,7 @@ export default {
     };
   },
   computed: {
-    selectOps() {
+    innerOptions() {
       const { options, ops } = this;
       return options || ops || [];
     },
