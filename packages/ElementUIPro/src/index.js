@@ -1,3 +1,4 @@
+import ElButtonPro from './ElButtonPro.vue';
 import ElInputPro from './ElInputPro.vue';
 import ElSelectPro from './ElSelectPro.vue';
 import ElCheckboxGroupPro from './ElCheckboxGroupPro.vue';
@@ -19,12 +20,13 @@ const components = [
 	ElDatePickerPro,
 	ElButtonGroupPro,
 	ElDialogPro,
-	ElDescriptionPro
+	ElDescriptionPro,
+	ElButtonPro
 ]
 
 export default {
 	install(Vue) {
-		for (const comp of components) {
+		for(const comp of components) {
 			Vue.component(comp.name, comp)
 		}
 	}

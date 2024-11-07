@@ -2,7 +2,7 @@
   "name": "element-ui-pro",
   "version": "1.0.0",
   "description": "element-ui perform for form",
-  "main": "lib/es/index.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "npx webpack --config webpack.config.dev.js",
     "build:umd": "npx webpack --config webpack.config.umd.js",
