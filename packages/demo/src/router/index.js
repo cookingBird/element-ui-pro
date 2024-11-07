@@ -20,6 +20,16 @@ const routes = [
     name: 'button',
     component: () => import(/* webpackChunkName: "about" */ '../views/ButtonView.vue'),
   },
+  {
+    path: '/select',
+    name: 'select',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SelectView.vue'),
+  },
+  {
+    path: '/input',
+    name: 'input',
+    component: () => import(/* webpackChunkName: "about" */ '../views/InputView.vue'),
+  },
 ];
 
 const router = new VueRouter({
