@@ -1,65 +1,131 @@
 <template>
-<el-checkbox-group
-	v-bind="$attrs"
-	v-model="valueList"
->
-	<el-checkbox
-		v-for="item,index in selectOps"
-		:key="index"
-		v-bind="objectPick(item, Object.keys(ElCheckbox))"
-	>
-	</el-checkbox>
-</el-checkbox-group>
+  <el-checkbox-group
+    v-bind="$attrs"
+    v-model="innerValue"
+    v-on="omit($listeners, 'update:value')"
+  >
+    <template v-for="(item, index) in innerOptions">
+      <el-checkbox :key="index" v-if="typeof item === 'string'" :label="item">
+      </el-checkbox>
+      <el-checkbox-button
+        v-else-if="item.type === 'button'"
+        :key="index"
+        v-bind="_pickProps(item)"
+      >
+        <slot :name="item.label"> {{ item.label }}</slot>
+      </el-checkbox-button>
+      <el-checkbox v-else :key="index" v-bind="_pickProps(item)">
+        <slot :name="item.label"> {{ item.label }}</slot>
+      </el-checkbox>
+    </template>
+  </el-checkbox-group>
 </template>
 
 <script>
-	import createGetterAndSetter from './mixin/createGetterAndSetter';
-	import dataFetch from './mixin/dataFetch';
-	import { objectPick } from './utils/utils';
+import createGetterAndSetter from './mixin/createGetterAndSetter';
+import common from './mixin/common';
+import debug from './mixin/debugger';
+import dataFetch from './mixin/dataFetch';
 
-	export default {
-		name: "ElCheckboxGroupPro",
-		mixins: [createGetterAndSetter([]), dataFetch],
-		props: {
-			options: Array,
-			uniqueKey: {
-				type: String,
-				default: 'id'
-			},
-		},
-		data() {
-			return {
-				ElCheckbox,
-				ops: [],
-			}
-		},
-		computed: {
-			valueList: {
-				get() {
-					const { options, ops, uniqueKey, valueKey } = this;
-					const model = this.valueGetter(this.model, valueKey);
-					const res = model
-						.map(id => ((options || ops).find(op => (op[uniqueKey] === id)) || {}))
-						.map(i => i.label)
-					return res;
-				},
-				set(val) {
-					const { options, uniqueKey, ops } = this;
-					const models = val
-						.map(label => (options || ops).find(op => op.label == label) || {})
-						.map(v => v[uniqueKey])
-					this.handleInput(models)
-				}
-			},
-			selectOps: {
-				get() {
-					const { options, ops } = this;
-					return options || ops || [];
-				}
-			},
-		},
-		methods: {
-			objectPick
-		},
-	}
+export default {
+  name: 'ElCheckboxGroupPro',
+  mixins: [createGetterAndSetter([]), dataFetch, common, debug],
+  model: {
+    prop: 'value',
+    event: 'update:value',
+  },
+  props: {
+    options: Array,
+    selectKey: {
+      tyep: Boolean,
+      default: false,
+    },
+    selectObj: {
+      tyep: Boolean,
+      default: false,
+    },
+    labelKey: {
+      type: String,
+      default: 'label',
+    },
+    rowKey: {
+      type: String,
+      default: 'id',
+    },
+  },
+  computed: {
+    innerValue: {
+      get() {
+        const val = this.valueGetter(this.model, this.valueKey);
+        if (this.debugger) {
+          console.log('get', val);
+        }
+        return this._mapInnerValue(val);
+      },
+      set(val) {
+        if (this.debugger) {
+          console.log('set', val);
+        }
+        this._setInnerValue(val);
+      },
+    },
+    innerOptions() {
+      const { options, ops } = this;
+      return options || ops || [];
+    },
+  },
+  methods: {
+    _pickProps(item) {
+      return this.pick(item, 'label', 'disabled', 'border', 'size');
+    },
+    _mapInnerValue(value) {
+      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this;
+      if (selectKey) {
+        this._mapInnerValue = (_value) =>
+          _value
+            .map((key) => innerOptions.find((item) => item[rowKey] === key))
+            .filter(Boolean)
+            .map((i) => i[labelKey]);
+      } else if (selectObj) {
+        this._mapInnerValue = (_value) =>
+          _value
+            .filter(Boolean)
+            // map 2 label
+            .map((i) => i[labelKey]);
+      } else {
+        this._mapInnerValue = (_value) => _value;
+      }
+      return this._mapInnerValue(value);
+    },
+    _setInnerValue(value) {
+      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this;
+      if (selectKey) {
+        this._setInnerValue = (_value) => {
+          this.handleInput(
+            _value
+              // find
+              .map((label) => innerOptions.find((op) => op[labelKey] === label))
+              .filter(Boolean)
+              // map 2 key
+              .map((i) => i[rowKey]),
+          );
+        };
+      } else if (selectObj) {
+        this._setInnerValue = (_value) => {
+          this.handleInput(
+            _value
+              // find
+              .map((label) => innerOptions.find((op) => op[labelKey] === label))
+              .filter(Boolean),
+          );
+        };
+      } else {
+        this._setInnerValue = (_value) => {
+          this.handleInput(_value);
+        };
+      }
+      this._setInnerValue(value);
+    },
+  },
+};
 </script>

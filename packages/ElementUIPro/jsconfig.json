@@ -18,7 +18,6 @@
 		]
 	},
 	"vueCompilerOptions": {
-		"experimentalCompatMode": 2,
 		"target": 2
 	},
 	"exclude": [

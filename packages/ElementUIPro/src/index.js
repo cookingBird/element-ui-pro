@@ -2,6 +2,7 @@ import ElButtonPro from './ElButtonPro.vue';
 import ElButtonGroupPro from './ElButtonGroupPro.vue';
 import ElInputPro from './ElInputPro.vue';
 import ElSelectPro from './ElSelectPro.vue';
+import ElCheckboxPro from './ElCheckboxPro.vue';
 import ElCheckboxGroupPro from './ElCheckboxGroupPro.vue';
 import ElTablePro from './ElTablePro';
 import ElFormPro from './ElFormPro';
@@ -21,7 +22,8 @@ const components = [
 	ElButtonGroupPro,
 	ElDialogPro,
 	ElDescriptionPro,
-	ElButtonPro
+	ElButtonPro,
+	ElCheckboxPro
 ]
 
 export default {
