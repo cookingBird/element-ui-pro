@@ -1,0 +1,26 @@
+{
+  "root": true,
+  "env": {
+    "node": false
+  },
+  "extends": ["plugin:vue/essential", "eslint:recommended"],
+  "rules": {
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "no-unused-vars": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "parser": "vue-eslint-parser",
+      "parserOptions": {
+        "parser": {
+          "js": "espree",
+          "ts": "@typescript-eslint/parser",
+          "<template>": "espree"
+        },
+        "sourceType": "module"
+      }
+    }
+  ]
+}
