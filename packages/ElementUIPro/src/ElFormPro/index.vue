@@ -26,8 +26,8 @@
               :slotIs="column.slotIs"
               :slotName="column.slotName"
               :slotProps="column.slotProps"
-              :fetch="column.fetch"
-              :effectKey="column.effectKey"
+              :fetch="column.fetch || column.slotProps?.fetch"
+              :effectKey="column.effectKey || column.slotProps?.effectKey"
             />
           </slot>
         </form-item>
@@ -35,18 +35,18 @@
     </template>
     <el-row v-else-if="innerProps.row" v-bind="innerProps.row">
       <template v-for="(column, index) of innerProps.columns">
-        <el-col v-if="column.if ?? true" v-bind="column.col" :key="index">
+        <el-col v-bind="column.col" :key="index">
           <FormItem
             v-if="column.if ?? true"
             :key="index"
             v-bind="column.formItemProps"
             :prop="getFormItemProp(column)"
           >
-            <!-- <template #label>
-                <slot :name="getFormItemProp(column) + 'Label'" :column="column">
-                  {{ column.formItemProps.label }}
-                </slot>
-              </template> -->
+            <template #label>
+              <slot :name="getFormItemProp(column) + 'Label'" :column="column">
+                {{ column.formItemProps.label }}
+              </slot>
+            </template>
             <slot :name="getFormItemProp(column)" :column="column">
               <type-node-vue
                 :model="model"
@@ -55,8 +55,8 @@
                 :slotIs="column.slotIs"
                 :slotName="column.slotName"
                 :slotProps="column.slotProps"
-                :fetch="column.fetch"
-                :effectKey="column.effectKey"
+                :fetch="column.fetch || column.slotProps?.fetch"
+                :effectKey="column.effectKey || column.slotProps?.effectKey"
               />
             </slot>
           </FormItem>
