@@ -8,6 +8,7 @@
       <router-link to="/input">Input</router-link> |
       <router-link to="/radio">Radio</router-link> |
       <router-link to="/checkbox">Checkbox</router-link> |
+      <router-link to="/form">Form</router-link> |
     </nav>
     <router-view />
   </div>
@@ -18,7 +19,6 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

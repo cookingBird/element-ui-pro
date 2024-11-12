@@ -1,6 +1,6 @@
 {
   "name": "element-ui-pro",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "element-ui perform for form",
   "main": "src/index.js",
   "scripts": {

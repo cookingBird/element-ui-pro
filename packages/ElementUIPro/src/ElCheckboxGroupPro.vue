@@ -89,6 +89,7 @@ export default {
       } else if (selectObj) {
         this._mapInnerValue = (_value) =>
           _value
+            // .map((key) => innerOptions.find((item) => item[rowKey] === key))
             .filter(Boolean)
             // map 2 label
             .map((i) => i[labelKey]);
