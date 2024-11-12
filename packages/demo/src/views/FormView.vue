@@ -4,6 +4,10 @@
     <el-form-pro :model="model" :columns="columns" :inline="true"></el-form-pro>
     <div class="title">Normal Form Example</div>
     <el-form-pro :model="model" :options="options"></el-form-pro>
+    <div class="title">Dynamic Form Example</div>
+    <el-form-pro :model="model2" :options="options2"></el-form-pro>
+    <div class="title">Related Dynamic Form Example</div>
+    <el-form-pro :model="model3" :options="options3"></el-form-pro>
   </div>
 </template>
 
@@ -14,6 +18,8 @@ export default {
   data() {
     return {
       model: {},
+      model2: {},
+      model3: {},
     };
   },
   computed: {
@@ -111,8 +117,183 @@ export default {
         ],
       };
     },
+    options2() {
+      const { sex } = this.model2;
+      return {
+        labelWidth: '120px',
+        row: {},
+        columns: [
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'name',
+            formItemProps: {
+              label: '姓名',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'age',
+            formItemProps: {
+              label: '年龄',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'sex',
+            formItemProps: {
+              label: '性别',
+            },
+            wrapperProps: {
+              class: 'w-full',
+            },
+            slotIs: 'select',
+            slotProps: {
+              options: [
+                {
+                  label: '男',
+                  value: 1,
+                },
+                {
+                  label: '女',
+                  value: 0,
+                },
+              ],
+            },
+          },
+          {
+            if: (() => sex === 1)(),
+            col: {
+              span: 12,
+            },
+            prop: 'hobby',
+            formItemProps: {
+              label: '爱好',
+            },
+            wrapperProps: {
+              class: 'w-full',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+          {
+            if: (() => sex === 0)(),
+            col: {
+              span: 12,
+            },
+            prop: 'hobby',
+            formItemProps: {
+              label: '兴趣',
+            },
+            wrapperProps: {
+              class: 'w-full',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+        ],
+      };
+    },
+    options3() {
+      return {
+        labelWidth: '120px',
+        row: {},
+        columns: [
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'name',
+            formItemProps: {
+              label: '姓名',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'age',
+            formItemProps: {
+              label: '年龄',
+            },
+            slotIs: 'input',
+            slotProps: {},
+          },
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'sex',
+            formItemProps: {
+              label: '性别',
+            },
+            wrapperProps: {
+              class: 'w-full',
+            },
+            slotIs: 'select',
+            slotProps: {
+              options: [
+                {
+                  label: '男',
+                  value: 1,
+                },
+                {
+                  label: '女',
+                  value: 0,
+                },
+              ],
+            },
+          },
+          {
+            col: {
+              span: 12,
+            },
+            prop: 'hobby',
+            formItemProps: {
+              label: '爱好',
+            },
+            wrapperProps: {
+              class: 'w-full',
+            },
+            slotIs: 'select',
+            slotProps: {
+              multiple: true,
+              effectKey: 'sex',
+              fetch(model = {}) {
+                console.log('fetch', model);
+                let res = [];
+                if (model.sex === 1) {
+                  res = [
+                    { label: '游戏', value: 'game' },
+                    { label: '篮球', value: 'basket' },
+                    { label: '足球', value: 'soccer' },
+                  ];
+                } else if (model.sex === 0) {
+                  res = [
+                    { label: '游戏', value: 'game' },
+                    { label: '电视剧', value: 'teleplay' },
+                    { label: '综艺', value: 'varietyShow' },
+                  ];
+                }
+                return Promise.resolve(res);
+              },
+            },
+          },
+        ],
+      };
+    },
   },
-  watch: {},
   methods: {
     handleChange() {
       console.log('checkedCities', this.checkedCities);
