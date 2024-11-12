@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import createGetterAndSetter from "./mixin/createGetterAndSetter";
-import dataFetch from "./mixin/dataFetch";
+import createGetterAndSetter from './mixin/createGetterAndSetter';
+import dataFetch from './mixin/dataFetch';
 
 export default {
-  name: "ElSelectPro",
+  name: 'ElSelectPro',
   mixins: [createGetterAndSetter(undefined), dataFetch],
   props: {
     options: Array,
     optionKey: {
       type: Object,
-      default: () => ({ label: "label", value: "value" }),
+      default: () => ({ label: 'label', value: 'value' }),
     },
   },
   data() {
@@ -48,4 +48,3 @@ export default {
   },
 };
 </script>
-
