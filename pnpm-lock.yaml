@@ -29,6 +29,9 @@ importers:
       '@eslint/js':
         specifier: ^9.14.0
         version: 9.14.0
+      '@types/eslint':
+        specifier: 9.6.1
+        version: 9.6.1
       '@vue/runtime-dom':
         specifier: ^3.3.4
         version: 3.4.23
@@ -71,6 +74,9 @@ importers:
       prettier:
         specifier: 3.3.3
         version: 3.3.3
+      vue-eslint-parser:
+        specifier: 9.4.3
+        version: 9.4.3(eslint@7.32.0)
       vue-loader:
         specifier: ^15.10.1
         version: 15.11.1(@vue/compiler-sfc@3.4.23)(css-loader@6.11.0(webpack@5.91.0))(lodash@4.17.21)(prettier@3.3.3)(vue-template-compiler@2.7.16)(webpack@5.91.0)
@@ -1098,6 +1104,9 @@ packages:
 
   '@types/eslint@8.56.9':
     resolution: {integrity: sha512-W4W3KcqzjJ0sHg2vAq9vfml6OhsJ53TcUjUqfzzZf/EChUtwspszj/S0pzMxnfRcO55/iGq47dscXw71Fxc4Zg==}
+
+  '@types/eslint@9.6.1':
+    resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -4715,8 +4724,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  vue-eslint-parser@9.4.2:
-    resolution: {integrity: sha512-Ry9oiGmCAK91HrKMtCrKFWmSFWvYkpGglCeFAIqDdr9zdXmMMpJOmUJS7WWsW7fX81h6mwHmUZCQQ1E0PkSwYQ==}
+  vue-eslint-parser@9.4.3:
+    resolution: {integrity: sha512-2rYRLWlIpaiN8xbPiDyXZXRgLGOtWxERV7ND5fFAv5qo1D2N9Fu9MNajBNc6o13lZ+24DAWCkQCvj4klgmcITg==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '>=6.0.0'
@@ -6040,10 +6049,15 @@ snapshots:
 
   '@types/eslint-scope@3.7.7':
     dependencies:
-      '@types/eslint': 8.56.9
+      '@types/eslint': 9.6.1
       '@types/estree': 1.0.5
 
   '@types/eslint@8.56.9':
+    dependencies:
+      '@types/estree': 1.0.5
+      '@types/json-schema': 7.0.15
+
+  '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
@@ -7688,7 +7702,7 @@ snapshots:
       aria-query: 5.3.0
       emoji-regex: 10.3.0
       eslint: 7.32.0
-      vue-eslint-parser: 9.4.2(eslint@7.32.0)
+      vue-eslint-parser: 9.4.3(eslint@7.32.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -9984,7 +9998,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-eslint-parser@9.4.2(eslint@7.32.0):
+  vue-eslint-parser@9.4.3(eslint@7.32.0):
     dependencies:
       debug: 4.3.4
       eslint: 7.32.0
