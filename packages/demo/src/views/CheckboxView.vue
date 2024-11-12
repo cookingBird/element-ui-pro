@@ -23,6 +23,17 @@
     <div>
       {{ stringfy(checkedCities3) }}
     </div>
+    <div class="title2">Group Button Example</div>
+    <el-checkbox-group-pro v-model="checkedCities3" :selectObj="true" :options="cities3">
+    </el-checkbox-group-pro>
+    <div class="title2">Group Button Split Example</div>
+    <el-checkbox-group-pro
+      v-model="checkedCities3"
+      :selectObj="true"
+      :split="true"
+      :options="cities3"
+    >
+    </el-checkbox-group-pro>
   </div>
 </template>
 
@@ -44,6 +55,12 @@ export default {
         { label: '北京', id: 2 },
         { label: '广州', id: 3 },
         { label: '深圳', id: 4 },
+      ],
+      cities3: [
+        { label: '上海', id: 1, type: 'button' },
+        { label: '北京', id: 2, type: 'button' },
+        { label: '广州', id: 3, type: 'button' },
+        { label: '深圳', id: 4, type: 'button' },
       ],
       checkedCities3: [
         { label: '上海', id: 1 },

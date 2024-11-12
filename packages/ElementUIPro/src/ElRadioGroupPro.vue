@@ -3,6 +3,7 @@
     v-loading="loading"
     v-bind="$attrs"
     :value="valueGetter(model)"
+    :data-split="split"
     v-on="$listeners"
     @input="handleInput"
   >
@@ -11,27 +12,42 @@
         v-if="item.type === 'button'"
         :key="index"
         :label="item.value"
+        :disabled="item.disabled"
+        :name="item.name"
       >
         {{ item.label }}
       </el-radio-button>
-      <el-radio v-else :key="index" :label="item.value">
+      <el-radio
+        v-else
+        :key="index"
+        :label="item.value"
+        :border="item.border"
+        :disabled="item.disabled"
+        :name="item.name"
+        :size="item.size"
+      >
         {{ item.label }}
       </el-radio>
     </template>
   </el-radio-group>
 </template>
 
-
 <script>
-import createGetterAndSetter from "./mixin/createGetterAndSetter";
-import dataFetch from "./mixin/dataFetch";
+import createGetterAndSetter from './mixin/createGetterAndSetter';
+import dataFetch from './mixin/dataFetch';
+import common from './mixin/common';
 
 export default {
-  name: "ElRadioGroupPro",
-  mixins: [createGetterAndSetter(""), dataFetch],
+  name: 'ElRadioGroupPro',
+  model: {
+    prop: 'value',
+    event: 'update:value',
+  },
+  mixins: [createGetterAndSetter(void 0), dataFetch, common],
   props: {
     value: [String, Number, Boolean],
     options: Array,
+    split: Boolean,
   },
   computed: {
     innerOptions() {
@@ -41,3 +57,15 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.el-radio-group[data-split='true'] {
+  .el-radio-button + .el-radio-button {
+    margin-inline-start: 2rem;
+  }
+  .el-radio-button__inner {
+    border-left: 1px solid #dcdfe6;
+    border-radius: 4px;
+    box-shadow: none !important;
+  }
+}
+</style>

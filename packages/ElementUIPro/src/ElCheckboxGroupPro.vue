@@ -2,6 +2,7 @@
   <el-checkbox-group
     v-bind="$attrs"
     v-model="innerValue"
+    :data-split="split"
     v-on="omit($listeners, 'update:value')"
   >
     <template v-for="(item, index) in innerOptions">
@@ -52,6 +53,7 @@ export default {
       type: String,
       default: 'id',
     },
+    split: Boolean,
   },
   computed: {
     innerValue: {
@@ -130,3 +132,18 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.el-checkbox-group[data-split='true'] {
+  .el-checkbox-button + .el-checkbox-button {
+    margin-inline-start: 2rem;
+  }
+  .el-checkbox-button.is-focus .el-checkbox-button__inner {
+    border-left: 1px solid #409eff;
+  }
+  .el-checkbox-button__inner {
+    border-left: 1px solid #dcdfe6;
+    border-radius: 4px;
+    box-shadow: none !important;
+  }
+}
+</style>
