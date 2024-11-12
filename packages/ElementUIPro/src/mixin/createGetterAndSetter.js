@@ -29,7 +29,7 @@ export default function createGetterAndSetter(defaultValue = '') {
       valueGetter(_model) {
         const { model, valueKey } = this;
         if (model === void 0 || valueKey === void 0) {
-          this.valueGetter = (model) => this.value;
+          this.valueGetter = () => this.value;
         } else {
           this.valueGetter = getCtxValueGetter.call(this, valueKey, defaultValue);
         }

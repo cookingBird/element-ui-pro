@@ -5,27 +5,25 @@
 </template>
 
 <script>
-import { passRef } from "./mixin/slot";
 export default {
-  name: "ElButtonPro",
+  name: 'ElButtonPro',
   data() {
     return {
       loading: false,
     };
   },
-  emit: ["click"],
+  emit: ['click'],
   mounted() {
-    console.log("slots", this.$slots);
-    console.log("scopedSlots", this.$scopedSlots);
+    console.log('slots', this.$slots);
+    console.log('scopedSlots', this.$scopedSlots);
   },
   methods: {
     _handleClick(ev) {
       this.loading = true;
-      this.$emit("click", () => (this.loading = false), ev);
+      this.$emit('click', () => (this.loading = false), ev);
     },
   },
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

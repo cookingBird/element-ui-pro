@@ -7,17 +7,14 @@
     "dev": "npx webpack --config webpack.config.dev.js",
     "build:umd": "npx webpack --config webpack.config.umd.js",
     "build:es": "npx webpack --config webpack.config.prod.js",
-    "build": "npm run build:umd && npm run build:es"
+    "build": "npm run build:umd && npm run build:es",
+    "lint": "npx eslint -c eslint.config.js --ext .js,.vue --fix src"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cookingBird/ElementPro.git"
   },
-  "keywords": [
-    "elemnt-ui",
-    "vue2",
-    "form"
-  ],
+  "keywords": ["elemnt-ui", "vue2", "form"],
   "author": "cooking_bird",
   "license": "MIT",
   "bugs": {
@@ -32,9 +29,11 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
-    "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
+    "@babel/eslint-parser": "7.25.9",
     "globals": "^15.12.0",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.24",

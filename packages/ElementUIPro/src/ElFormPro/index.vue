@@ -70,10 +70,9 @@
 import { FormItem } from 'element-ui';
 import common from '../mixin/common';
 import TypeNodeVue from './components/TypeNode.vue';
-import ElButtonGroupProVue from '../ElButtonGroupPro.vue';
 export default {
   name: 'ElFormPro',
-  components: { FormItem, TypeNodeVue, ElButtonGroupProVue },
+  components: { FormItem, TypeNodeVue },
   mixins: [common],
   props: {
     model: {
