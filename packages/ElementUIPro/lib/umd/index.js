@@ -90025,6 +90025,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
+  VERSION: () => (/* binding */ VERSION),
   "default": () => (/* binding */ src)
 });
 
@@ -92304,6 +92305,7 @@ var components = [ElInputPro, ElSelectPro, ElCheckboxGroupPro, ElTablePro, ElFor
     }
   }
 });
+var VERSION = '2.0.0';
 })();
 
 /******/ return __webpack_exports__;
