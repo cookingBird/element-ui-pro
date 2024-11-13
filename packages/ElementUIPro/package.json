@@ -53,6 +53,10 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "files": ["lib/", "README.md", "LICENSE"],
   "peerDependencies": {
     "element-ui": "^2.15.14"
   }
