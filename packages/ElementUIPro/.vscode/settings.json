@@ -1,0 +1,11 @@
+{
+  "prettier.enable": true,
+  "eslint.debug": false,
+  "eslint.enable": true,
+  "eslint.format.enable": false,
+  "eslint.ignoreUntitled": true,
+  "eslint.onIgnoredFiles": "off",
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.lintTask.enable": true,
+  "eslint.run": "onType"
+}
