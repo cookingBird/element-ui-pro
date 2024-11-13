@@ -12,24 +12,25 @@ import ElDialogPro from './ElDialogPro.vue';
 import ElDescriptionPro from './ElDescriptionsPro/index.vue';
 
 const components = [
-	ElInputPro,
-	ElSelectPro,
-	ElCheckboxGroupPro,
-	ElTablePro,
-	ElFormPro,
-	ElRadioGroupPro,
-	ElDatePickerPro,
-	ElButtonGroupPro,
-	ElDialogPro,
-	ElDescriptionPro,
-	ElButtonPro,
-	ElCheckboxPro
-]
+  ElInputPro,
+  ElSelectPro,
+  ElCheckboxGroupPro,
+  ElTablePro,
+  ElFormPro,
+  ElRadioGroupPro,
+  ElDatePickerPro,
+  ElButtonGroupPro,
+  ElDialogPro,
+  ElDescriptionPro,
+  ElButtonPro,
+  ElCheckboxPro,
+];
 
 export default {
-	install(Vue) {
-		for(const comp of components) {
-			Vue.component(comp.name, comp)
-		}
-	}
-}
+  install(Vue) {
+    for (const comp of components) {
+      Vue.component(comp.name, comp);
+    }
+  },
+};
+export const VERSION = '2.0.0';
