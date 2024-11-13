@@ -3,7 +3,22 @@
   "env": {
     "node": false
   },
-  "extends": ["plugin:vue/essential", "eslint:recommended"],
+  "extends": [
+    // 开启 vue 插件并使用推荐规则
+    "plugin:vue/essential",
+    // 启用eslint推荐规则
+    "eslint:recommended",
+    // 使 ESLint 不与 Prettier 规则冲突
+    "prettier",
+    // 开启 Prettier 插件并使用推荐规则
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    // 添加 vue 插件
+    "vue",
+    // 添加 Prettier 插件
+    "prettier"
+  ],
   "rules": {
     "no-console": "warn",
     "no-debugger": "warn",
