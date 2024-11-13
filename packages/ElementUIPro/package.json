@@ -1,5 +1,5 @@
 {
-  "name": "element-ui-pro",
+  "name": "@easy/element-ui-pro",
   "version": "2.0.0",
   "description": "element-ui perform for form",
   "main": "src/index.js",
@@ -37,6 +37,7 @@
     "@babel/eslint-parser": "7.25.9",
     "globals": "^15.12.0",
     "mini-css-extract-plugin": "^2.7.6",
+    "terser-webpack-plugin": "5.3.10",
     "postcss": "^8.4.24",
     "postcss-loader": "^7.3.2",
     "postcss-preset-env": "^8.4.2",
@@ -44,6 +45,8 @@
     "vue-loader": "^15.10.1",
     "vue-template-compiler": "^2.7.14",
     "webpack": "^5.85.0",
+    "sass": "1.80.7",
+    "sass-loader": "16.0.3",
     "webpack-cli": "^5.1.1",
     "webpack-merge": "^5.9.0"
   },
