@@ -1,9 +1,8 @@
 {
-  "name": "@monee/element-ui-pro",
+  "name": "@eassy/element-ui-pro",
   "version": "2.0.0",
   "description": "element-ui perform for form",
   "main": "lib/umd/index.js",
-  "private": "false",
   "scripts": {
     "dev": "npx webpack --config webpack.config.dev.js",
     "build:umd": "npx webpack --config webpack.config.umd.js",
@@ -53,9 +52,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.21"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
   },
   "files": ["lib/", "README.md", "LICENSE"],
   "peerDependencies": {
