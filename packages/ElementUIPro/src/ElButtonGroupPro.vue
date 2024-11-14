@@ -2,8 +2,8 @@
   <el-button-group>
     <template v-for="(item, index) in buttons">
       <ElButtonPro
-        :key="index"
         v-if="item.if ?? true"
+        :key="index"
         v-bind="omit(item, 'if', 'listeners', 'label')"
         v-on="item.listeners"
       >

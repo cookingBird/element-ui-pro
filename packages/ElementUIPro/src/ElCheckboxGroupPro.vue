@@ -6,7 +6,7 @@
     v-on="omit($listeners, 'update:value')"
   >
     <template v-for="(item, index) in innerOptions">
-      <el-checkbox :key="index" v-if="typeof item === 'string'" :label="item">
+      <el-checkbox v-if="typeof item === 'string'" :key="index" :label="item">
       </el-checkbox>
       <el-checkbox-button
         v-else-if="item.type === 'button'"

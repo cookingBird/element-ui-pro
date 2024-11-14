@@ -8,7 +8,7 @@
     "build:umd": "npx webpack --config webpack.config.umd.js",
     "build:es": "npx webpack --config webpack.config.prod.js",
     "build": "npm run build:umd && npm run build:es",
-    "lint": "npx eslint -c eslint.config.js --ext .js,.vue --fix src"
+    "lint": "npx eslint --ext .js,.vue --fix src"
   },
   "repository": {
     "type": "git",
@@ -25,11 +25,13 @@
     "@babel/core": "^7.22.1",
     "@babel/preset-env": "^7.22.4",
     "@eslint/js": "^9.14.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "@vue/runtime-dom": "^3.3.4",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
-    "eslint": "^7.32.0",
+    "eslint": "^8",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",

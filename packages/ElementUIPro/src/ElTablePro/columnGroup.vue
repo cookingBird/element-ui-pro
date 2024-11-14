@@ -30,12 +30,12 @@
             <template v-else>
               <TypeComp
                 :model="contentScope.row"
-                :valueKey="subCol.prop"
-                :slotIs="subCol.slotIs"
-                :slotProps="subCol.slotProps"
+                :value-key="subCol.prop"
+                :slot-is="subCol.slotIs"
+                :slot-props="subCol.slotProps"
                 :fetch="subCol.slotProps?.fetch"
-                :effectKey="subCol.slotProps?.effectKey"
-                :wrapperProps="subCol.slotProps?.wrapperProps"
+                :effect-key="subCol.slotProps?.effectKey"
+                :wrapper-props="subCol.slotProps?.wrapperProps"
               />
             </template>
           </slot>

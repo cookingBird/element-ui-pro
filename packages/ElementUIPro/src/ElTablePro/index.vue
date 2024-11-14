@@ -25,12 +25,12 @@
             <template v-else>
               <TypeComp
                 :model="contentScope.row"
-                :valueKey="column.prop"
-                :slotIs="column.slotIs"
-                :slotProps="column.slotProps"
+                :value-key="column.prop"
+                :slot-is="column.slotIs"
+                :slot-props="column.slotProps"
                 :fetch="column.slotProps?.fetch"
-                :effectKey="column.slotProps?.effectKey"
-                :wrapperProps="column.slotProps?.wrapperProps"
+                :effect-key="column.slotProps?.effectKey"
+                :wrapper-props="column.slotProps?.wrapperProps"
               />
             </template>
           </slot>
@@ -55,10 +55,14 @@ export default {
   },
   methods: {
     handleFormatter(formatter, scope) {
-      return formatter(scope.row, scope.column, scope.row[column.prop], scope.$index);
+      return formatter(
+        scope.row,
+        scope.column,
+        scope.row[scope.column.prop],
+        scope.$index,
+      );
     },
     getColumnContent(column, scope) {
-      console.log('getColumnContent', column.prop);
       return column.formatter ?
           this.handleFormatter(column.formatter, scope)
         : scope.row[column.prop];

@@ -21,13 +21,13 @@
           <slot :name="getFormItemProp(column)" :column="column">
             <type-node-vue
               :model="model"
-              :valueKey="getFormItemProp(column)"
-              :wrapperProps="column.wrapperProps"
-              :slotIs="column.slotIs"
-              :slotName="column.slotName"
-              :slotProps="column.slotProps"
+              :value-key="getFormItemProp(column)"
+              :wrapper-props="column.wrapperProps"
+              :slot-is="column.slotIs"
+              :slot-name="column.slotName"
+              :slot-props="column.slotProps"
               :fetch="column.fetch || column.slotProps?.fetch"
-              :effectKey="column.effectKey || column.slotProps?.effectKey"
+              :effect-key="column.effectKey || column.slotProps?.effectKey"
             />
           </slot>
         </form-item>
@@ -50,13 +50,13 @@
             <slot :name="getFormItemProp(column)" :column="column">
               <type-node-vue
                 :model="model"
-                :valueKey="getFormItemProp(column)"
-                :wrapperProps="column.wrapperProps"
-                :slotIs="column.slotIs"
-                :slotName="column.slotName"
-                :slotProps="column.slotProps"
+                :value-key="getFormItemProp(column)"
+                :wrapper-props="column.wrapperProps"
+                :slot-is="column.slotIs"
+                :slot-name="column.slotName"
+                :slot-props="column.slotProps"
                 :fetch="column.fetch || column.slotProps?.fetch"
-                :effectKey="column.effectKey || column.slotProps?.effectKey"
+                :effect-key="column.effectKey || column.slotProps?.effectKey"
               />
             </slot>
           </FormItem>
