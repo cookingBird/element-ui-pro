@@ -3,7 +3,6 @@ const path = require('path');
 const config = require('./webpack.config.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 
 const umdCfg = {
   mode: 'production',
@@ -22,10 +21,7 @@ const umdCfg = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [
-      //new TerserPlugin(),
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: ['...', new CssMinimizerPlugin()],
   },
 };
 

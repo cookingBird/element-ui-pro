@@ -13,9 +13,6 @@ module.exports = {
     },
     fallback: {},
   },
-  experiments: {
-    outputModule: true,
-  },
   plugins: [new VueLoaderPlugin(), new CleanWebpackPlugin()],
   module: {
     rules: [
