@@ -7,17 +7,17 @@
     // 开启 vue 插件并使用推荐规则
     "plugin:vue/recommended",
     // 启用eslint推荐规则
-    "eslint:recommended"
+    "eslint:recommended",
     // 使 ESLint 不与 Prettier 规则冲突
-    // "prettier",
+    "prettier",
     // 开启 Prettier 插件并使用推荐规则
-    // "plugin:prettier/recommended"
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     // 添加 vue 插件
     "vue",
     // 添加 Prettier 插件
-    // "prettier",
+    "prettier",
     "@typescript-eslint"
   ],
   "rules": {

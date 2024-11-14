@@ -21,11 +21,10 @@
 </template>
 
 <script>
-import createGetterAndSetter from "./mixin/createGetterAndSetter";
+import createGetterAndSetter from './mixin/createGetterAndSetter';
 
 export default {
-  name: "ElInputPro",
-  mixins: [createGetterAndSetter("")],
+  name: 'ElInputPro',
+  mixins: [createGetterAndSetter('')],
 };
 </script>
-

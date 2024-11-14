@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import { omit } from "lodash";
-import ElButtonPro from "./ElButtonPro.vue";
+import { omit } from 'lodash';
+import ElButtonPro from './ElButtonPro.vue';
 export default {
-  name: "ElButtonGroupPro",
+  name: 'ElButtonGroupPro',
   components: { ElButtonPro },
   props: {
     buttons: Array,

@@ -63,8 +63,8 @@ export default {
       );
     },
     getColumnContent(column, scope) {
-      return column.formatter ?
-          this.handleFormatter(column.formatter, scope)
+      return column.formatter
+        ? this.handleFormatter(column.formatter, scope)
         : scope.row[column.prop];
     },
   },

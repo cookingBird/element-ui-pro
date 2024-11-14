@@ -58,11 +58,16 @@ export default {
   },
   methods: {
     handleFormatter(formatter, scope) {
-      return formatter(scope.row, scope.column, scope.row[column.prop], scope.$index);
+      return formatter(
+        scope.row,
+        scope.column,
+        scope.row[scope.column.prop],
+        scope.$index,
+      );
     },
     getColumnContent(column, scope) {
-      return column.formatter ?
-          this.handleFormatter(column.formatter, scope)
+      return column.formatter
+        ? this.handleFormatter(column.formatter, scope)
         : scope.row[column.prop];
     },
   },

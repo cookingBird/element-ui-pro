@@ -10,14 +10,13 @@
 </template>
 
 <script>
-import createGetterAndSetter from "./mixin/createGetterAndSetter";
+import createGetterAndSetter from './mixin/createGetterAndSetter';
 
 export default {
-  name: "ElCheckboxPro",
-  mixins: [createGetterAndSetter("")],
+  name: 'ElCheckboxPro',
+  mixins: [createGetterAndSetter('')],
   props: {
     value: Boolean,
   },
 };
 </script>
-
