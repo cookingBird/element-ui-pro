@@ -36,9 +36,8 @@
 </template>
 
 <script>
-import Column from './columnGroup.vue';
 export default {
-  components: { ColumnGroup: Column },
+  name: 'ColumnGroup',
   props: {
     columnsHeader: {
       type: Object,

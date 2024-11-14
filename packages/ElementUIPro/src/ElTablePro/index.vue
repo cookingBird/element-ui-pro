@@ -17,12 +17,12 @@
       >
         <!-- 普通列 -->
         <template v-for="(item, index) of columns">
-          <Column
+          <ColumnGroup
             v-if="item.children && item.children.length"
             :columnsHeader="item"
             :key="item"
           >
-          </Column>
+          </ColumnGroup>
           <el-table-column
             v-else-if="item.type === 'index' || item.type === 'selection'"
             :key="index"
@@ -79,14 +79,14 @@
 
 <script>
 import request from '../utils/Ajax';
-import Column from './columnGroup';
+import ColumnGroup from './ColumnGroup';
 import pagination from './PaginationPro.vue';
 import * as Utils from '../utils/utils';
 export default {
   name: 'ElTablePro',
   inheritAttrs: false,
   components: {
-    Column,
+    ColumnGroup,
     pagination,
   },
   props: {
