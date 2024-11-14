@@ -26,20 +26,20 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {},
   data() {
     return {
-      value: "hello world",
+      value: 'hello world',
       model: {
-        like: "Hello World",
+        like: 'Hello World',
       },
     };
   },
   computed: {},
   methods: {
     handleClick(done, ev) {
-      console.log("args", done, ev);
+      console.log('args', done, ev);
       setTimeout(done, 3000);
     },
     dataFetch() {

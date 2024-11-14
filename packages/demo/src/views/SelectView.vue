@@ -4,11 +4,7 @@
     <el-select-pro v-model="value" :options="options"></el-select-pro>
     <el-select-pro v-model="valueDefault" :options="options"></el-select-pro>
     <div class="title">Model-Key Example</div>
-    <el-select-pro
-      :model="model"
-      valueKey="like"
-      :options="options"
-    ></el-select-pro>
+    <el-select-pro :model="model" valueKey="like" :options="options"></el-select-pro>
     <el-select-pro
       :model="model"
       valueKey="likeDefault"
@@ -28,11 +24,7 @@
     <div class="title">Fetch Example</div>
     <el-select-pro v-model="value" :fetch="dataFetch"></el-select-pro>
     <div class="title">Effect Fetch Example</div>
-    <el-input-pro
-      :model="model"
-      valueKey="like"
-      style="width: 220px"
-    ></el-input-pro>
+    <el-input-pro :model="model" valueKey="like" style="width: 220px"></el-input-pro>
     <el-select-pro
       :model="model"
       valueKey="likeDefault"
@@ -44,44 +36,44 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {},
   data() {
     return {
       options: [
         {
-          value: "选项1",
-          label: "黄金糕",
+          value: '选项1',
+          label: '黄金糕',
         },
         {
-          value: "选项2",
-          label: "双皮奶",
+          value: '选项2',
+          label: '双皮奶',
         },
         {
-          value: "选项3",
-          label: "蚵仔煎",
+          value: '选项3',
+          label: '蚵仔煎',
         },
         {
-          value: "选项4",
-          label: "龙须面",
+          value: '选项4',
+          label: '龙须面',
         },
         {
-          value: "选项5",
-          label: "北京烤鸭",
+          value: '选项5',
+          label: '北京烤鸭',
         },
       ],
-      value: "",
-      valueDefault: "选项1",
+      value: '',
+      valueDefault: '选项1',
       model: {
-        like: "",
-        likeDefault: "选项3",
+        like: '',
+        likeDefault: '选项3',
       },
     };
   },
   computed: {},
   methods: {
     handleClick(done, ev) {
-      console.log("args", done, ev);
+      console.log('args', done, ev);
       setTimeout(done, 3000);
     },
     dataFetch() {

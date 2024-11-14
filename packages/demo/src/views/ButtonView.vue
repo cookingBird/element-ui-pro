@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "HomeView",
+  name: 'HomeView',
   components: {},
   data() {
     return {};
@@ -24,18 +24,18 @@ export default {
     buttons() {
       return [
         {
-          label: "Disabled Button",
+          label: 'Disabled Button',
           disabled: true,
           round: true,
         },
         {
-          label: "Round Button",
+          label: 'Round Button',
           round: true,
-          icon: "el-icon-edit",
+          icon: 'el-icon-edit',
         },
         {
-          label: "SlotButton",
-          type: "success",
+          label: 'SlotButton',
+          type: 'success',
           round: true,
         },
       ];
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     handleClick(done, ev) {
-      console.log("args", done, ev);
+      console.log('args', done, ev);
       setTimeout(done, 3000);
     },
   },

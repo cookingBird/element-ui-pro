@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/packages/theme-chalk/lib/index.css';
-import ElementUIPro from '@easy/element-ui-pro';
+import ElementUIPro from '@eassy/element-ui-pro';
+import '@eassy/element-ui-pro/lib/umd/index.css';
 import App from './App.vue';
 import router from './router';
 
