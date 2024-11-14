@@ -9,6 +9,8 @@
       <router-link to="/radio">Radio</router-link> |
       <router-link to="/checkbox">Checkbox</router-link> |
       <router-link to="/form">Form</router-link> |
+      <router-link to="/table">Table</router-link> |
+      <router-link to="/table-slot">TableSlot</router-link> |
     </nav>
     <router-view />
   </div>

@@ -1,52 +1,70 @@
 <template>
-  <el-table-column
-    :prop="columnsHeader.prop"
-    :label="columnsHeader.label"
-    :width="columnsHeader.width"
-    :min-width="columnsHeader.minWidth"
-    :fixed="columnsHeader.fixed"
-    :align="columnsHeader.align || 'center'"
-    :show-overflow-tooltip="overflowTooltipCom(columnsHeader.overflowTooltip)"
-  >
-    <div v-for="item in columnsHeader.children" :key="item.prop">
-      <column-group
-        v-if="item.children && item.children.length"
-        :coloumn-header="item"
-      ></column-group>
-      <el-table-column
-        v-else
-        :sortable="item.sortable"
-        :label="item.label"
-        :prop="item.prop"
-        :width="item.width"
-        :min-width="item.minWidth"
-        :fixed="item.fixed"
-        :align="item.align || 'center'"
-        :show-overflow-tooltip="overflowTooltipCom(item.overflowTooltip)"
-      >
-        <template #default="scope">
-          <!-- 插槽,插槽名为对应prop,不使用可不写插槽 -->
-          <slot :name="item.prop" :column="scope.column" :row="scope.row">
-            {{ item.format ? item.format(scope.row) : scope.row[item.prop] }}
+  <el-table-column v-bind="column">
+    <template slot="header" slot-scope="headerScope">
+      <slot :name="column.prop + 'Header'" v-bind="headerScope">
+        {{ column.label }}
+      </slot>
+    </template>
+    <template v-for="subCol of column.children">
+      <ColumnGroup v-if="subCol.childreen?.length" :key="subCol.prop" :column="subCol">
+        <!-- Passive slots -->
+        <template
+          v-for="slotName of Object.keys($scopedSlots)"
+          :slot="slotName"
+          slot-scope="scope"
+        >
+          <slot :name="slotName" v-bind="scope"></slot>
+        </template>
+      </ColumnGroup>
+      <el-table-column v-else :key="subCol.prop" v-bind="subCol">
+        <template slot="header" slot-scope="headerScope">
+          <slot :name="subCol.prop + 'Header'" v-bind="headerScope">
+            {{ subCol.label }}
+          </slot>
+        </template>
+        <template slot="default" slot-scope="contentScope">
+          <slot :name="subCol.prop" v-bind="contentScope">
+            <template v-if="!subCol.slotIs">
+              {{ getColumnContent(subCol, contentScope) }}
+            </template>
+            <template v-else>
+              <TypeComp
+                :model="contentScope.row"
+                :valueKey="subCol.prop"
+                :slotIs="subCol.slotIs"
+                :slotProps="subCol.slotProps"
+                :fetch="subCol.slotProps?.fetch"
+                :effectKey="subCol.slotProps?.effectKey"
+                :wrapperProps="subCol.slotProps?.wrapperProps"
+              />
+            </template>
           </slot>
         </template>
       </el-table-column>
-    </div>
+    </template>
   </el-table-column>
 </template>
 
 <script>
+import TypeComp from '../ElFormPro/TypeNode';
 export default {
   name: 'ColumnGroup',
+  components: { TypeComp },
   props: {
-    columnsHeader: {
+    column: {
       type: Object,
       required: true,
     },
   },
   methods: {
-    //超出气泡框
-    overflowTooltipCom: (val) => val ?? true,
+    handleFormatter(formatter, scope) {
+      return formatter(scope.row, scope.column, scope.row[column.prop], scope.$index);
+    },
+    getColumnContent(column, scope) {
+      return column.formatter ?
+          this.handleFormatter(column.formatter, scope)
+        : scope.row[column.prop];
+    },
   },
 };
 </script>

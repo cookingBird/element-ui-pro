@@ -1,8 +1,8 @@
 {
   "name": "@eassy/element-ui-pro",
-  "version": "2.0.0",
-  "description": "element-ui perform for form",
-  "main": "lib/umd/index.js",
+  "version": "2.0.1",
+  "description": "element-ui perform for jsonform",
+  "main": "src/index.js",
   "scripts": {
     "dev": "npx webpack --config webpack.config.dev.js",
     "build:umd": "npx webpack --config webpack.config.umd.js",

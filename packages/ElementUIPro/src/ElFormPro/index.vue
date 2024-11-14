@@ -69,7 +69,7 @@
 <script>
 import { FormItem } from 'element-ui';
 import common from '../mixin/common';
-import TypeNodeVue from './components/TypeNode.vue';
+import TypeNodeVue from './TypeNode.vue';
 export default {
   name: 'ElFormPro',
   components: { FormItem, TypeNodeVue },

@@ -43,7 +43,7 @@ export default {
     prop: 'value',
     event: 'update:value',
   },
-  mixins: [createGetterAndSetter(void 0), dataFetch, common],
+  mixins: [createGetterAndSetter(undefined), dataFetch, common],
   props: {
     value: [String, Number, Boolean],
     options: Array,

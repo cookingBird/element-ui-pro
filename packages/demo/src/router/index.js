@@ -45,6 +45,16 @@ const routes = [
     name: 'form',
     component: () => import(/* webpackChunkName: "about" */ '../views/FormView.vue'),
   },
+  {
+    path: '/table',
+    name: 'table',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TableView.vue'),
+  },
+  {
+    path: '/table-slot',
+    name: 'table-slot',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TableSlotView.vue'),
+  },
 ];
 
 const router = new VueRouter({

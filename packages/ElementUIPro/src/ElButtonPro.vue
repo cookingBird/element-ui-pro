@@ -1,5 +1,5 @@
 <template>
-  <el-button ref="btn" v-bind="$attrs" :loading="loading" @click="_handleClick">
+  <el-button ref="btn" v-bind="$attrs" :loading="loading" @click="handleClick">
     <slot>Button</slot>
   </el-button>
 </template>
@@ -18,12 +18,13 @@ export default {
     console.log('scopedSlots', this.$scopedSlots);
   },
   methods: {
-    _handleClick(ev) {
+    handleClick(ev) {
       this.loading = true;
-      this.$emit('click', () => (this.loading = false), ev);
+      const done = () => {
+        this.loading = false;
+      };
+      this.$emit('click', done, ev);
     },
   },
 };
 </script>
-
-<style lang="scss"></style>
