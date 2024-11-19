@@ -1,7 +1,7 @@
 import { get } from 'lodash';
 import Ajax from '../utils/Ajax';
 
-/**@description 以.访问符获取一个ctx中的某一字段值 */
+/** @description 以.访问符获取一个ctx中的某一字段值 */
 export function getCtxValueGetter(path, fallbackValue) {
   const segments = path?.split('.');
   return (ctx) => {
@@ -20,11 +20,11 @@ export function getCtxValueGetter(path, fallbackValue) {
   };
 }
 
-/**@description 以.访问符设置一个ctx中的某些字段值 */
+/** @description 以.访问符设置一个ctx中的某些字段值 */
 export function getCtxValueSetter(ctx, filedLike) {
   if (filedLike) {
     const fileds = filedLike.split('.');
-    const length = fileds.length;
+    const { length } = fileds;
     return (value) => {
       let context = ctx;
       fileds.forEach((key, index) => {
@@ -35,9 +35,8 @@ export function getCtxValueSetter(ctx, filedLike) {
         }
       });
     };
-  } else {
-    (value) => (ctx = value);
   }
+  throw Error('leak filedLike param ');
 }
 
 /**
@@ -52,17 +51,19 @@ export function effectFingerprint(model, effectKey) {
   if (Array.isArray(effectKey)) {
     const cur = effectKey.map((keyLike) => getCtxValue(model, keyLike));
     return cur.join(',');
-  } else if (typeof effectKey === 'string') {
+  }
+  if (typeof effectKey === 'string') {
     const cur = effectKey.split(',').map((keyLike) => getCtxValue(model, keyLike));
     return cur.join(',');
   }
+  return '';
 }
 
 /**
  * @deprecated
  * @description 判断当前effectFingerprint是否有效 */
-export function validateEffect(effectFingerprint = '') {
-  if (effectFingerprint === '') return true;
+export function validateEffect(val = '') {
+  if (val === '') return true;
   return effectFingerprint.split(',').reduce((pre, cur) => {
     return pre && Boolean(cur);
   }, true);
@@ -86,17 +87,19 @@ export function request(model, ctx) {
       url: urlParams.reduce((pre, key, index) => {
         return pre.replace(key, urlParamsValue[index]);
       }, URL),
-      method: method,
+      method,
       params: parsedPrams,
     });
-  } else if (method === 'post') {
+  }
+  if (method === 'post') {
     const parsedData = objectMap(data, (key, value) => getCtxValue(model, value));
     return Ajax({
       url: urlParams.reduce((pre, key, index) => {
         return pre.replace(key, urlParamsValue[index]);
       }, URL),
-      method: method,
+      method,
       data: parsedData,
     });
   }
+  throw Error('method not support');
 }

@@ -22,7 +22,7 @@
             <type-node-vue
               :model="model"
               :value-key="getFormItemProp(column)"
-              :wrapper-props="column.wrapperProps"
+              :wrapper-props="column.wrapperProps || column.slotProps?.wrapperProps"
               :slot-is="column.slotIs"
               :slot-name="column.slotName"
               :slot-props="column.slotProps"
@@ -51,7 +51,7 @@
               <type-node-vue
                 :model="model"
                 :value-key="getFormItemProp(column)"
-                :wrapper-props="column.wrapperProps"
+                :wrapper-props="column.wrapperProps || column.slotProps?.wrapperProps"
                 :slot-is="column.slotIs"
                 :slot-name="column.slotName"
                 :slot-props="column.slotProps"
@@ -70,6 +70,7 @@
 import { FormItem } from 'element-ui';
 import common from '../mixin/common';
 import TypeNodeVue from './TypeNode.vue';
+
 export default {
   name: 'ElFormPro',
   components: { FormItem, TypeNodeVue },
@@ -79,8 +80,11 @@ export default {
       type: Object,
       required: true,
     },
+    columns: {
+      type: Array,
+      default: () => [],
+    },
     options: Object,
-    columns: Array,
     rules: Object,
   },
   computed: {

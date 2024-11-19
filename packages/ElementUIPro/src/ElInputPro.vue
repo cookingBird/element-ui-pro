@@ -6,16 +6,16 @@
     @input="handleInput"
   >
     <template #prefix>
-      <slot name="prefix"></slot>
+      <slot name="prefix" />
     </template>
     <template #suffix>
-      <slot name="suffix"></slot>
+      <slot name="suffix" />
     </template>
     <template #prepend>
-      <slot name="prepend"></slot>
+      <slot name="prepend" />
     </template>
     <template #append>
-      <slot name="append"></slot>
+      <slot name="append" />
     </template>
   </el-input>
 </template>

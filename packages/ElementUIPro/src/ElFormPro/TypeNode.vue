@@ -7,7 +7,7 @@
       :value-key="valueKey"
       v-bind="slotProps"
       v-on="slotProps?.on"
-    ></el-input-pro>
+    />
     <!-- select -->
     <el-select-pro
       v-else-if="slotIs === 'select'"
@@ -17,8 +17,7 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    >
-    </el-select-pro>
+    />
     <!-- checkbox group -->
     <el-checkbox-group-pro
       v-else-if="slotIs === 'checkboxGroup'"
@@ -28,8 +27,7 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    >
-    </el-checkbox-group-pro>
+    />
     <!-- radio group -->
     <el-radio-group-pro
       v-else-if="slotIs === 'radioGroup'"
@@ -39,8 +37,7 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    >
-    </el-radio-group-pro>
+    />
     <!-- date picker -->
     <el-date-picker-pro
       v-else-if="slotIs === 'datePicker'"
@@ -50,9 +47,9 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    >
-    </el-date-picker-pro>
-    <slot v-else-if="slotIs === 'slot'" :name="slotName"></slot>
+    />
+    <slot
+v-else-if="slotIs === 'slot'" :name="slotName" />
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <el-date-picker
+  <el-time-picker
     :value="valueGetter(model)"
     v-bind="$attrs"
     @input="handleInput"
@@ -16,14 +16,14 @@
         v-bind="scope"
       />
     </template>
-  </el-date-picker>
+  </el-time-picker>
 </template>
 
 <script>
 import createGetterAndSetter from './mixin/createGetterAndSetter';
 
 export default {
-  name: 'ElDatePickerPro',
+  name: 'ElTimePickerPro',
   mixins: [createGetterAndSetter(undefined)],
   props: {
     value: [String, Date],

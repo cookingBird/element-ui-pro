@@ -5,7 +5,7 @@
     v-bind="$attrs"
     v-on="$listeners"
   >
-    <slot></slot>
+    <slot />
   </el-dialog>
 </template>
 

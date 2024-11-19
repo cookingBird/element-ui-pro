@@ -1,6 +1,7 @@
 <template>
   <div>
-    <el-descriptions v-if="!form" ref="description" v-bind="options" v-on="$listeners">
+    <el-descriptions v-if="!form"
+ref="description" v-bind="options" v-on="$listeners">
       <template v-for="item of options.columns">
         <el-descriptions-item
           v-if="
@@ -17,16 +18,16 @@
           :label="item.label"
         >
           <TypeNode
-            ref="node"
-            :options="item"
-            :model="model"
-            v-on="$listeners"
-          ></TypeNode>
+ref="node" :options="item"
+:model="model" v-on="$listeners"
+/>
         </el-descriptions-item>
       </template>
     </el-descriptions>
-    <el-form v-else ref="form" :model="model" v-bind="options" v-on="$listeners">
-      <el-descriptions v-bind="options" v-on="$listeners">
+    <el-form v-else
+ref="form" :model="model" v-bind="options" v-on="$listeners">
+      <el-descriptions v-bind="options"
+v-on="$listeners">
         <template v-for="item of options.columns">
           <el-descriptions-item
             v-if="
@@ -44,11 +45,9 @@
           >
             <el-form-item v-bind="item">
               <TypeNode
-                ref="node"
-                :options="item"
-                :model="model"
-                v-on="$listeners"
-              ></TypeNode>
+ref="node" :options="item"
+:model="model" v-on="$listeners"
+/>
             </el-form-item>
           </el-descriptions-item>
         </template>
@@ -58,9 +57,10 @@
 </template>
 
 <script>
+import { omit } from 'lodash';
 import { passRefList } from '../mixin/slot';
-import { objectOmit, callValue } from '../utils/utils';
 import TypeNode from '../ElFormPro/TypeNode.vue';
+
 export default {
   name: 'ElDescriptionsPro',
   components: { TypeNode },
@@ -80,8 +80,10 @@ export default {
     },
   },
   methods: {
-    objectOmit,
-    callValue,
+    objectOmit: omit,
+    callValue(val, handler) {
+      return val ? handler(val) : val;
+    },
   },
 };
 </script>

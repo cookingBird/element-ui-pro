@@ -6,18 +6,17 @@
     @input="handleInput"
   >
     <template #prefix>
-      <slot name="prefix"></slot>
+      <slot name="prefix" />
     </template>
     <template #empty>
-      <slot name="empty"></slot>
+      <slot name="empty" />
     </template>
     <el-option
       v-for="(ops, index) in innerOptions"
       :key="index"
       :label="ops[optionKey.label]"
       :value="ops[optionKey.value]"
-    >
-    </el-option>
+    />
   </el-select>
 </template>
 

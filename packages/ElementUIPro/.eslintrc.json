@@ -1,41 +1,53 @@
 {
-  "root": true,
   "env": {
-    "node": false
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser", // 使用 TypeScript 解析器
+  "parserOptions": {
+    "ecmaVersion": 2021, // 使用 ES2021 的语法
+    "sourceType": "module", // 启用模块化
+    "ecmaFeatures": {
+      "jsx": true // 启用 JSX 语法
+    }
   },
   "extends": [
-    // 开启 vue 插件并使用推荐规则
-    "plugin:vue/recommended",
-    // 启用eslint推荐规则
     "eslint:recommended",
-    // 使 ESLint 不与 Prettier 规则冲突
-    "prettier",
-    // 开启 Prettier 插件并使用推荐规则
-    "plugin:prettier/recommended"
+    "standard", // standardJs规范
+    // "google", // google规范
+    "airbnb-base",
+    "plugin:prettier/recommended" // 包含了config,plugin
   ],
-  "plugins": [
-    // 添加 vue 插件
-    "vue",
-    // 添加 Prettier 插件
-    "prettier",
-    "@typescript-eslint"
-  ],
-  "rules": {
-    "no-console": "warn",
-    "no-debugger": "warn",
-    "no-unused-vars": "error"
-  },
+  "plugins": ["prettier"],
   "overrides": [
     {
-      "files": ["*.vue"],
-      "parser": "vue-eslint-parser",
-      "parserOptions": {
-        "parser": {
-          "js": "espree",
-          "ts": "@typescript-eslint/parser",
-          "<template>": "espree"
-        },
-        "sourceType": "module"
+      "files": ["**/*.jsx", "**/*.tsx"],
+      "extends": [
+        "airbnb" // airbnb规范
+      ]
+    },
+    {
+      "files": ["**/*.ts", "**/*.tsx"], // 针对所有 TypeScript 文件
+      "parser": "@typescript-eslint/parser", // 使用 TypeScript 解析器
+      "extends": ["plugin:@typescript-eslint/recommended"], // 启用 TypeScript 推荐规则
+      "plugins": ["@typescript-eslint"]
+    },
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/jsx-filename-extension": 0,
+        "@typescript-eslint/explicit-module-boundary-types": 0
+      }
+    },
+    {
+      "files": ["**/*.vue"], // 针对所有 vue 文件
+      "extends": ["plugin:vue/essential", "plugin:vue/recommended"],
+      "plugins": ["vue"]
+    },
+    {
+      "files": ["**/*.test.js", "**/*.test.ts", "**/*.test.tsx"], // 针对所有测试文件
+      "env": {
+        "jest": true // 启用 Jest 测试环境
       }
     }
   ]

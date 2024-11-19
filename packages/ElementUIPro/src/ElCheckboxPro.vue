@@ -5,7 +5,7 @@
     v-on="$listeners"
     @change="handleInput"
   >
-    <slot></slot>
+    <slot />
   </el-checkbox>
 </template>
 

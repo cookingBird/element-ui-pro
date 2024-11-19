@@ -18,8 +18,8 @@ export default function createGetterAndSetter(defaultValue = '') {
       valueSetter(val) {
         const { model, valueKey } = this;
         if (model === undefined || valueKey === undefined) {
-          this.valueSetter = (val) => {
-            this.$emit('update:value', val);
+          this.valueSetter = (_val) => {
+            this.$emit('update:value', _val);
           };
         } else {
           this.valueSetter = getCtxValueSetter.call(this, model, valueKey);

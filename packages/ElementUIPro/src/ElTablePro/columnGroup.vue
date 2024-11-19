@@ -1,29 +1,48 @@
 <template>
   <el-table-column v-bind="column">
-    <template slot="header" slot-scope="headerScope">
-      <slot :name="column.prop + 'Header'" v-bind="headerScope">
+    <template
+slot="header" slot-scope="headerScope"
+>
+      <slot
+:name="column.prop + 'Header'" v-bind="headerScope"
+>
         {{ column.label }}
       </slot>
     </template>
     <template v-for="subCol of column.children">
-      <ColumnGroup v-if="subCol.childreen?.length" :key="subCol.prop" :column="subCol">
+      <ColumnGroup
+v-if="subCol.childreen?.length" :key="subCol.prop"
+:column="subCol"
+>
         <!-- Passive slots -->
         <template
           v-for="slotName of Object.keys($scopedSlots)"
           :slot="slotName"
           slot-scope="scope"
         >
-          <slot :name="slotName" v-bind="scope"></slot>
+          <slot
+:name="slotName" v-bind="scope" />
         </template>
       </ColumnGroup>
-      <el-table-column v-else :key="subCol.prop" v-bind="subCol">
-        <template slot="header" slot-scope="headerScope">
-          <slot :name="subCol.prop + 'Header'" v-bind="headerScope">
+      <el-table-column
+v-else :key="subCol.prop"
+v-bind="subCol"
+>
+        <template
+slot="header" slot-scope="headerScope"
+>
+          <slot
+:name="subCol.prop + 'Header'" v-bind="headerScope"
+>
             {{ subCol.label }}
           </slot>
         </template>
-        <template slot="default" slot-scope="contentScope">
-          <slot :name="subCol.prop" v-bind="contentScope">
+        <template
+slot="default" slot-scope="contentScope"
+>
+          <slot
+:name="subCol.prop" v-bind="contentScope"
+>
             <template v-if="!subCol.slotIs">
               {{ getColumnContent(subCol, contentScope) }}
             </template>
@@ -46,7 +65,8 @@
 </template>
 
 <script>
-import TypeComp from '../ElFormPro/TypeNode';
+import TypeComp from '../ElFormPro/TypeNode.vue';
+
 export default {
   name: 'ColumnGroup',
   components: { TypeComp },
@@ -66,8 +86,8 @@ export default {
       );
     },
     getColumnContent(column, scope) {
-      return column.formatter
-        ? this.handleFormatter(column.formatter, scope)
+      return column.formatter ?
+          this.handleFormatter(column.formatter, scope)
         : scope.row[column.prop];
     },
   },

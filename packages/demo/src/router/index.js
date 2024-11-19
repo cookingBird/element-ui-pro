@@ -55,6 +55,11 @@ const routes = [
     name: 'table-slot',
     component: () => import(/* webpackChunkName: "about" */ '../views/TableSlotView.vue'),
   },
+  {
+    path: '/datePicker',
+    name: 'datePicker',
+    component: () => import(/* webpackChunkName: "about" */ '../views/DatePickerView.vue'),
+  },
 ];
 
 const router = new VueRouter({

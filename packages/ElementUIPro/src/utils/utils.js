@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import Ajax from '../utils/Ajax';
+import Ajax from './Ajax';
 
 /** @description 以.访问符获取一个ctx中的某一字段值 */
 export function getCtxValueGetter(path, fallbackValue) {
@@ -27,7 +27,7 @@ export function getCtxValueGetter(path, fallbackValue) {
  */
 export function getCtxValueSetter(ctx, filedLike) {
   const fileds = filedLike.split('.');
-  const length = fileds.length;
+  const { length } = fileds;
   return (value) => {
     let context = ctx;
     fileds.forEach((key, index) => {

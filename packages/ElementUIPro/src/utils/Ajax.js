@@ -19,13 +19,10 @@ export default function request(option) {
   const method = (option.method || 'post').toLowerCase().trim();
 
   if (method === 'get') {
-    const url =
-      action +
-      '?' +
-      Object.entries(option.params).reduce((pre, cur) => {
-        const [key, value] = cur;
-        return pre + '&' + key + '=' + value;
-      }, '');
+    const url = `${action}?${Object.entries(option.params).reduce((pre, cur) => {
+      const [key, value] = cur;
+      return `${pre}&${key}=${value}`;
+    }, '')}`;
     xhr.open(method, url, true);
   } else {
     xhr.open(method, action, true);
@@ -37,7 +34,7 @@ export default function request(option) {
 
   const headers = option.headers || {};
 
-  for (let item in headers) {
+  for (const item in headers) {
     if (Object.prototype.hasOwnProperty.call(headers, item) && headers[item] !== null) {
       xhr.setRequestHeader(item, headers[item]);
     }

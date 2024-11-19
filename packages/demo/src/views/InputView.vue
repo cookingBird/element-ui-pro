@@ -1,25 +1,39 @@
 <template>
   <div class="home">
     <div class="title">V-Model Example</div>
-    <el-input-pro v-model="value"></el-input-pro>
+    <el-input-pro v-model="value" />
     <div class="title">Model-Key Example</div>
-    <el-input-pro :model="model" valueKey="like"></el-input-pro>
+    <el-input-pro
+      :model="model"
+      value-key="like" />
     <div class="title">Slots Example</div>
     <div class="title2">Prefix Slot Example</div>
-    <el-input-pro :model="model" valueKey="like">
-      <i slot="prefix" class="el-icon-search"></i>
+    <el-input-pro
+      :model="model"
+      value-key="like">
+      <i
+        slot="prefix"
+        class="el-icon-search" />
     </el-input-pro>
     <div class="title2">Suffix Slot Example</div>
-    <el-input-pro :model="model" valueKey="like">
-      <i slot="suffix" class="el-icon-date"></i>
+    <el-input-pro
+      :model="model"
+      value-key="like">
+      <i
+        slot="suffix"
+        class="el-icon-date" />
     </el-input-pro>
     <div class="title2">Prepend Slot Example</div>
-    <el-input-pro :model="model" valueKey="like">
-      <template slot="prepend">Http://</template>
+    <el-input-pro
+      :model="model"
+      value-key="like">
+      <template slot="prepend"> Http:// </template>
     </el-input-pro>
     <div class="title2">Append Slot Example</div>
-    <el-input-pro :model="model" valueKey="like">
-      <template slot="append">.com</template>
+    <el-input-pro
+      :model="model"
+      value-key="like">
+      <template slot="append"> .com </template>
     </el-input-pro>
   </div>
 </template>
