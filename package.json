@@ -2,8 +2,10 @@
   "name": "pnpmWorkspaceTemplate",
   "version": "1.0.0",
   "description": "",
-  "packageManager": "pnpm",
-  "main": "index.js",
+  "packageManager": "pnpm@9.14.4",
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
