@@ -1,16 +1,11 @@
 <template>
-  <el-checkbox
-    v-bind="$attrs"
-    :value="valueGetter(model)"
-    v-on="$listeners"
-    @change="handleInput"
-  >
-    <slot />
+  <el-checkbox v-bind="$attrs" :value="valueGetter(model)" v-on="$listeners" @change="handleInput">
+    <slot></slot>
   </el-checkbox>
 </template>
 
 <script>
-import createGetterAndSetter from './mixin/createGetterAndSetter';
+import createGetterAndSetter from './mixin/createGetterAndSetter'
 
 export default {
   name: 'ElCheckboxPro',
@@ -18,5 +13,5 @@ export default {
   props: {
     value: Boolean,
   },
-};
+}
 </script>

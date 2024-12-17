@@ -1,9 +1,9 @@
-export const ElAlert = {};
+export const ElAlert = {}
 
-export const ElLoading = {};
+export const ElLoading = {}
 
-export const ElMessage = {};
+export const ElMessage = {}
 
-export const ElMessageBox = {};
+export const ElMessageBox = {}
 
-export const ElNotification = {};
+export const ElNotification = {}

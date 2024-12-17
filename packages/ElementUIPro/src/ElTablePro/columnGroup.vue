@@ -1,48 +1,25 @@
 <template>
   <el-table-column v-bind="column">
-    <template
-slot="header" slot-scope="headerScope"
->
-      <slot
-:name="column.prop + 'Header'" v-bind="headerScope"
->
+    <template slot="header" slot-scope="headerScope">
+      <slot :name="column.prop + 'Header'" v-bind="headerScope">
         {{ column.label }}
       </slot>
     </template>
     <template v-for="subCol of column.children">
-      <ColumnGroup
-v-if="subCol.childreen?.length" :key="subCol.prop"
-:column="subCol"
->
+      <ColumnGroup v-if="subCol.childreen?.length" :key="subCol.prop" :column="subCol">
         <!-- Passive slots -->
-        <template
-          v-for="slotName of Object.keys($scopedSlots)"
-          :slot="slotName"
-          slot-scope="scope"
-        >
-          <slot
-:name="slotName" v-bind="scope" />
+        <template v-for="slotName of Object.keys($scopedSlots)" :slot="slotName" slot-scope="scope">
+          <slot :name="slotName" v-bind="scope"></slot>
         </template>
       </ColumnGroup>
-      <el-table-column
-v-else :key="subCol.prop"
-v-bind="subCol"
->
-        <template
-slot="header" slot-scope="headerScope"
->
-          <slot
-:name="subCol.prop + 'Header'" v-bind="headerScope"
->
+      <el-table-column v-else :key="subCol.prop" v-bind="subCol">
+        <template slot="header" slot-scope="headerScope">
+          <slot :name="subCol.prop + 'Header'" v-bind="headerScope">
             {{ subCol.label }}
           </slot>
         </template>
-        <template
-slot="default" slot-scope="contentScope"
->
-          <slot
-:name="subCol.prop" v-bind="contentScope"
->
+        <template slot="default" slot-scope="contentScope">
+          <slot :name="subCol.prop" v-bind="contentScope">
             <template v-if="!subCol.slotIs">
               {{ getColumnContent(subCol, contentScope) }}
             </template>
@@ -65,7 +42,7 @@ slot="default" slot-scope="contentScope"
 </template>
 
 <script>
-import TypeComp from '../ElFormPro/TypeNode.vue';
+import TypeComp from '../ElFormPro/TypeNode.vue'
 
 export default {
   name: 'ColumnGroup',
@@ -78,18 +55,13 @@ export default {
   },
   methods: {
     handleFormatter(formatter, scope) {
-      return formatter(
-        scope.row,
-        scope.column,
-        scope.row[scope.column.prop],
-        scope.$index,
-      );
+      return formatter(scope.row, scope.column, scope.row[scope.column.prop], scope.$index)
     },
     getColumnContent(column, scope) {
-      return column.formatter ?
-          this.handleFormatter(column.formatter, scope)
-        : scope.row[column.prop];
+      return column.formatter
+        ? this.handleFormatter(column.formatter, scope)
+        : scope.row[column.prop]
     },
   },
-};
+}
 </script>

@@ -1,21 +1,21 @@
-export const ElRow = {};
+export const ElRow = {}
 
-export const ElCol = {};
+export const ElCol = {}
 
 export const Layout = {
   ElRow,
   ElCol,
-};
+}
 
-export const ElContainer = {};
+export const ElContainer = {}
 
-export const ElHeader = {};
+export const ElHeader = {}
 
-export const ElAside = {};
+export const ElAside = {}
 
-export const ElMain = {};
+export const ElMain = {}
 
-export const ElFooter = {};
+export const ElFooter = {}
 
 export const Container = {
   ElContainer,
@@ -23,7 +23,7 @@ export const Container = {
   ElAside,
   ElMain,
   ElFooter,
-};
+}
 
 export const ElButton = [
   'size',
@@ -36,7 +36,7 @@ export const ElButton = [
   'icon',
   'autofocus',
   'native-type',
-];
+]
 
 export const ElLink = {
   type: '',
@@ -44,4 +44,4 @@ export const ElLink = {
   disabled: '',
   href: '',
   icon: '',
-};
+}

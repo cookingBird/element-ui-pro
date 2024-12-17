@@ -11,6 +11,7 @@
       <el-radio-button
         v-if="item.type === 'button'"
         :key="index"
+        v-bind="item"
         :label="item.value"
         :disabled="item.disabled"
         :name="item.name"
@@ -20,6 +21,7 @@
       <el-radio
         v-else
         :key="index"
+        v-bind="item"
         :label="item.value"
         :border="item.border"
         :disabled="item.disabled"
@@ -33,9 +35,9 @@
 </template>
 
 <script>
-import createGetterAndSetter from './mixin/createGetterAndSetter';
-import dataFetch from './mixin/dataFetch';
-import common from './mixin/common';
+import createGetterAndSetter from './mixin/createGetterAndSetter'
+import dataFetch from './mixin/dataFetch'
+import common from './mixin/common'
 
 export default {
   name: 'ElRadioGroupPro',
@@ -51,20 +53,23 @@ export default {
   },
   computed: {
     innerOptions() {
-      const { options, ops } = this;
-      return options || ops || [];
+      const { options, ops } = this
+      return options || ops || []
     },
   },
-};
+}
 </script>
 <style lang="scss">
 .el-radio-group[data-split='true'] {
-  .el-radio-button + .el-radio-button {
-    margin-inline-start: 2rem;
-  }
+  --gap: 1rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gap);
+
   .el-radio-button__inner {
     border-left: 1px solid #dcdfe6;
-    border-radius: 4px;
+    border-radius: 4px !important;
     box-shadow: none !important;
   }
 }

@@ -7,7 +7,7 @@
       :value-key="valueKey"
       v-bind="slotProps"
       v-on="slotProps?.on"
-    />
+    ></el-input-pro>
     <!-- select -->
     <el-select-pro
       v-else-if="slotIs === 'select'"
@@ -17,7 +17,8 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    />
+    >
+    </el-select-pro>
     <!-- checkbox group -->
     <el-checkbox-group-pro
       v-else-if="slotIs === 'checkboxGroup'"
@@ -27,7 +28,8 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    />
+    >
+    </el-checkbox-group-pro>
     <!-- radio group -->
     <el-radio-group-pro
       v-else-if="slotIs === 'radioGroup'"
@@ -37,7 +39,8 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    />
+    >
+    </el-radio-group-pro>
     <!-- date picker -->
     <el-date-picker-pro
       v-else-if="slotIs === 'datePicker'"
@@ -47,15 +50,21 @@
       :effect-key="effectKey"
       :fetch="fetch"
       v-on="slotProps?.on"
-    />
-    <slot
-v-else-if="slotIs === 'slot'" :name="slotName" />
+    >
+    </el-date-picker-pro>
+    <slot v-else-if="slotIs === 'slot'" :name="slotName"></slot>
+    <span v-else v-bind="slotProps">
+      {{ getValue(dict, dictFinder, model, valueKey) }}
+    </span>
   </div>
 </template>
 
 <script>
+import common from '../mixin/common'
+
 export default {
   name: 'TypeNode',
+  mixins: [common],
   props: {
     slotIs: String,
     slotName: String,
@@ -65,6 +74,25 @@ export default {
     wrapperProps: Object,
     effectKey: [String, Array],
     fetch: Function,
+    dict: {
+      type: Array,
+      default: null,
+    },
+    dictFinder: {
+      type: Function,
+      default: (dict, value) => {
+        return dict.find(item => item.code === value)?.name || '--'
+      },
+    },
   },
-};
+  methods: {
+    getValue(dict, dictFinder, model, valueKey) {
+      let res = this.get(model, valueKey)
+      if (dict) {
+        res = dictFinder(dict, res)
+      }
+      return res
+    },
+  },
+}
 </script>

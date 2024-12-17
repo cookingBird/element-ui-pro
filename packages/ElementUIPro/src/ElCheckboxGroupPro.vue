@@ -8,11 +8,7 @@
   >
     <template v-for="(item, index) in innerOptions">
       <el-checkbox v-if="typeof item === 'string'" :key="index" :label="item" />
-      <el-checkbox-button
-        v-else-if="item.type === 'button'"
-        :key="index"
-        v-bind="_pickProps(item)"
-      >
+      <el-checkbox-button v-else-if="item.type === 'button'" :key="index" v-bind="_pickProps(item)">
         <slot :name="item.label">
           {{ item.label }}
         </slot>
@@ -28,10 +24,10 @@
 
 <script>
 /* eslint-disable no-underscore-dangle */
-import createGetterAndSetter from './mixin/createGetterAndSetter';
-import common from './mixin/common';
-import debug from './mixin/debugger';
-import dataFetch from './mixin/dataFetch';
+import createGetterAndSetter from './mixin/createGetterAndSetter'
+import common from './mixin/common'
+import debug from './mixin/debugger'
+import dataFetch from './mixin/dataFetch'
 
 export default {
   name: 'ElCheckboxGroupPro',
@@ -66,84 +62,85 @@ export default {
   computed: {
     innerValue: {
       get() {
-        const val = this.valueGetter(this.model, this.valueKey);
+        const val = this.valueGetter(this.model, this.valueKey)
         if (this.debugger) {
-          console.log('get', val);
+          console.log('get', val)
         }
-        return this._mapInnerValue(val);
+        return this._mapInnerValue(val)
       },
       set(val) {
         if (this.debugger) {
-          console.log('set', val);
+          console.log('set', val)
         }
-        this._setInnerValue(val);
+        this._setInnerValue(val)
       },
     },
     innerOptions() {
-      const { options, ops } = this;
-      return options || ops || [];
+      const { options, ops } = this
+      return options || ops || []
     },
   },
   methods: {
     _pickProps(item) {
-      return this.pick(item, 'label', 'disabled', 'border', 'size');
+      return this.pick(item, 'label', 'disabled', 'border', 'size')
     },
     _mapInnerValue(value) {
-      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this;
+      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this
       if (selectKey) {
-        this._mapInnerValue = (_value) =>
+        this._mapInnerValue = _value =>
           _value
-            .map((key) => innerOptions.find((item) => item[rowKey] === key))
+            .map(key => innerOptions.find(item => item[rowKey] === key))
             .filter(Boolean)
-            .map((i) => i[labelKey]);
+            .map(i => i[labelKey])
       } else if (selectObj) {
-        this._mapInnerValue = (_value) =>
+        this._mapInnerValue = _value =>
           _value
             // .map((key) => innerOptions.find((item) => item[rowKey] === key))
             .filter(Boolean)
             // map 2 label
-            .map((i) => i[labelKey]);
+            .map(i => i[labelKey])
       } else {
-        this._mapInnerValue = (_value) => _value;
+        this._mapInnerValue = _value => _value
       }
-      return this._mapInnerValue(value);
+      return this._mapInnerValue(value)
     },
     _setInnerValue(value) {
-      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this;
+      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this
       if (selectKey) {
-        this._setInnerValue = (_value) => {
+        this._setInnerValue = _value => {
           this.handleInput(
             _value
               // find
-              .map((label) => innerOptions.find((op) => op[labelKey] === label))
+              .map(label => innerOptions.find(op => op[labelKey] === label))
               .filter(Boolean)
               // map 2 key
-              .map((i) => i[rowKey]),
-          );
-        };
+              .map(i => i[rowKey])
+          )
+        }
       } else if (selectObj) {
-        this._setInnerValue = (_value) => {
+        this._setInnerValue = _value => {
           this.handleInput(
             _value
               // find
-              .map((label) => innerOptions.find((op) => op[labelKey] === label))
-              .filter(Boolean),
-          );
-        };
+              .map(label => innerOptions.find(op => op[labelKey] === label))
+              .filter(Boolean)
+          )
+        }
       } else {
-        this._setInnerValue = (_value) => {
-          this.handleInput(_value);
-        };
+        this._setInnerValue = _value => {
+          this.handleInput(_value)
+        }
       }
-      this._setInnerValue(value);
+      this._setInnerValue(value)
     },
   },
-};
+}
 </script>
 <style lang="scss">
 .el-checkbox-group-pro.el-checkbox-group[data-split='true'] {
+  --gutter: 2rem;
   .el-checkbox-button + .el-checkbox-button {
-    margin-inline-start: 2rem;
+    margin-inline-start: var(--gutter);
   }
   .el-checkbox-button.is-focus .el-checkbox-button__inner {
     border-left: 1px solid #409eff;

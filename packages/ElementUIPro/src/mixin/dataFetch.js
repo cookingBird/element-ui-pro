@@ -1,5 +1,5 @@
-import { debounce } from 'lodash';
-import { effectFingerprint } from './tool';
+import { debounce } from 'lodash'
+import { effectFingerprint } from './tool'
 
 export default {
   props: {
@@ -11,11 +11,11 @@ export default {
     return {
       ops: [],
       loading: false,
-    };
+    }
   },
   computed: {
     isEffect() {
-      return effectFingerprint(this.model, this.effectKey);
+      return effectFingerprint(this.model, this.effectKey)
     },
   },
   watch: {
@@ -23,8 +23,8 @@ export default {
       handler() {
         if (this.model && this.fetch) {
           // remove before value
-          this.valueSetter(undefined);
-          this.modelEffectHandler(this.model);
+          this.valueSetter(undefined)
+          this.modelEffectHandler(this.model)
         }
       },
     },
@@ -33,24 +33,24 @@ export default {
     this.modelEffectHandler = debounce(this.modelEffectHandler, this.wait || 700, {
       trailing: true,
       leading: true,
-    });
+    })
   },
   mounted() {
     if (this.fetch) {
-      this.modelEffectHandler();
+      this.modelEffectHandler()
     }
   },
   methods: {
     async modelEffectHandler(val) {
       try {
-        this.loading = true;
-        this.ops = await this.fetch(val);
-        this.loading = false;
+        this.loading = true
+        this.ops = await this.fetch(val)
+        this.loading = false
       } catch (error) {
-        console.error('model effect handle error', error);
-        this.loading = false;
-        this.valueSetter(undefined);
+        console.error('model effect handle error', error)
+        this.loading = false
+        this.valueSetter(undefined)
       }
     },
   },
-};
+}

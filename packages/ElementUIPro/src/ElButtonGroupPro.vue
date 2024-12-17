@@ -1,11 +1,11 @@
 <template>
-  <el-button-group v-if="rawGroup">
+  <el-button-group v-if="raw">
     <template v-for="(item, index) in buttons">
       <ElButtonPro
         v-if="item.if ?? true"
         :key="index"
-        v-bind="omit(item, 'if', 'listeners', 'label')"
-        v-on="item.listeners"
+        v-bind="omit(item, 'if', 'label')"
+        v-on="item.on"
       >
         <slot :name="item.label">
           {{ item.label }}
@@ -13,17 +13,13 @@
       </ElButtonPro>
     </template>
   </el-button-group>
-  <div
-    v-else
-    class="button-group-pro"
-    :data-custom="!rawGroup"
-  >
+  <div v-else class="button-group-pro" :data-custom="!raw">
     <template v-for="(item, index) in buttons">
       <ElButtonPro
         v-if="item.if ?? true"
         :key="index"
         v-bind="omit(item, 'if', 'listeners', 'label')"
-        v-on="item.listeners"
+        v-on="item.on"
       >
         <slot :name="item.label">
           {{ item.label }}
@@ -34,8 +30,8 @@
 </template>
 
 <script>
-import { omit } from 'lodash';
-import ElButtonPro from './ElButtonPro.vue';
+import { omit } from 'lodash'
+import ElButtonPro from './ElButtonPro.vue'
 
 export default {
   name: 'ElButtonGroupPro',
@@ -45,29 +41,32 @@ export default {
       type: Array,
       default: () => [],
     },
-    rawGroup: Boolean,
+    raw: Boolean,
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
     omit,
   },
-};
+}
 </script>
-<style>
-.button-group-pro[data-custom='true'] {
+<style lang="scss">
+:where(.button-group-pro[data-custom='true']) {
   --padding-inline: 15px;
   --padding-block: 9px;
   all: initial;
   display: flex;
   align-items: center;
-}
-.button-group-pro[data-custom='true'] .el-button--primary {
-  line-height: 1em;
-}
-.button-group-pro[data-custom='true'] .el-button {
-  padding-inline: var(--padding-inline);
-  padding-block: var(--padding-block);
+  .el-button--primary {
+    line-height: 1em;
+  }
+  .el-button {
+    padding-inline: var(--padding-inline);
+    padding-block: var(--padding-block);
+  }
+  .el-button + .el-button {
+    margin: initial;
+  }
 }
 </style>

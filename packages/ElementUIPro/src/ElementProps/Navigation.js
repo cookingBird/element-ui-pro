@@ -1,11 +1,11 @@
-export const ElNavMenu = {};
+export const ElNavMenu = {}
 
-export const ElTabs = {};
+export const ElTabs = {}
 
-export const ElBreadcrumb = {};
+export const ElBreadcrumb = {}
 
-export const ElPageHeader = {};
+export const ElPageHeader = {}
 
-export const ElDropdown = {};
+export const ElDropdown = {}
 
-export const ElSteps = {};
+export const ElSteps = {}

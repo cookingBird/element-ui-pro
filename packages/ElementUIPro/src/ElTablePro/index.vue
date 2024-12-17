@@ -11,6 +11,7 @@
         :column="column"
       >
         <!-- Passive slots -->
+
         <template
           v-for="slotName of Object.keys($scopedSlots)"
           :slot="slotName"
@@ -19,9 +20,10 @@
           <slot
             :name="slotName"
             v-bind="scope"
-          />
+          ></slot>
         </template>
       </ColumnGroup>
+
       <el-table-column
         v-else
         :key="column.prop"
@@ -38,6 +40,7 @@
             {{ column.label }}
           </slot>
         </template>
+
         <template
           slot="default"
           slot-scope="contentScope"
@@ -49,6 +52,7 @@
             <template v-if="!column.slotIs">
               {{ getColumnContent(column, contentScope) }}
             </template>
+
             <template v-else>
               <TypeComp
                 :model="contentScope.row"
@@ -68,33 +72,44 @@
 </template>
 
 <script>
-import ColumnGroup from './columnGroup.vue';
-import TypeComp from '../ElFormPro/TypeNode.vue';
+import ColumnGroup from './columnGroup.vue'
+
+import TypeComp from '../ElFormPro/TypeNode'
 
 export default {
   name: 'ElTablePro',
+
   components: { ColumnGroup, TypeComp },
+
   props: {
     loading: Boolean,
+
     columns: {
       type: Array,
+
       default: () => [],
     },
   },
+
   methods: {
     handleFormatter(formatter, scope) {
       return formatter(
         scope.row,
+
         scope.column,
+
         scope.row[scope.column.prop],
+
         scope.$index,
-      );
+      )
     },
+
     getColumnContent(column, scope) {
       return column.formatter ?
           this.handleFormatter(column.formatter, scope)
-        : scope.row[column.prop];
+        : scope.row[column.prop]
     },
   },
-};
+}
 </script>
+

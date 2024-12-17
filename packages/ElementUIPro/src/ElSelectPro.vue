@@ -1,28 +1,24 @@
 <template>
-  <el-select
-    :value="valueGetter(model)"
-    v-bind="$attrs"
-    v-on="$listeners"
-    @input="handleInput"
-  >
+  <el-select :value="valueGetter(model)" v-bind="$attrs" v-on="$listeners" @input="handleInput">
     <template #prefix>
-      <slot name="prefix" />
+      <slot name="prefix"></slot>
     </template>
     <template #empty>
-      <slot name="empty" />
+      <slot name="empty"></slot>
     </template>
     <el-option
       v-for="(ops, index) in innerOptions"
       :key="index"
       :label="ops[optionKey.label]"
       :value="ops[optionKey.value]"
-    />
+    >
+    </el-option>
   </el-select>
 </template>
 
 <script>
-import createGetterAndSetter from './mixin/createGetterAndSetter';
-import dataFetch from './mixin/dataFetch';
+import createGetterAndSetter from './mixin/createGetterAndSetter'
+import dataFetch from './mixin/dataFetch'
 
 export default {
   name: 'ElSelectPro',
@@ -37,13 +33,13 @@ export default {
   data() {
     return {
       ops: [],
-    };
+    }
   },
   computed: {
     innerOptions() {
-      const { options, ops } = this;
-      return options || ops || [];
+      const { options, ops } = this
+      return options || ops || []
     },
   },
-};
+}
 </script>

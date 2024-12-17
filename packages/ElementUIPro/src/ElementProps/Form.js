@@ -1,4 +1,4 @@
-export const ElRadio = {};
+export const ElRadio = {}
 
 export const ElCheckboxGroup = {
   value: 'any',
@@ -8,7 +8,7 @@ export const ElCheckboxGroup = {
   max: 'number',
   textColor: 'string',
   fill: 'string',
-};
+}
 
 export const ElCheckbox = {
   value: 'any',
@@ -21,7 +21,7 @@ export const ElCheckbox = {
   name: 'string',
   checked: 'boolean',
   indeterminate: 'boolean',
-};
+}
 
 export const ElInput = {
   type: 'string',
@@ -50,9 +50,9 @@ export const ElInput = {
   label: 'string',
   tabindex: 'string',
   validateEvent: 'boolean',
-};
+}
 
-export const ElInputNumber = {};
+export const ElInputNumber = {}
 
 export const ElSelect = {
   value: 'boolean,string,number',
@@ -80,35 +80,35 @@ export const ElSelect = {
   defaultFirstOption: 'boolean',
   popperAppendToBody: 'boolean',
   automaticDropdown: 'boolean',
-};
+}
 
 export const ElSelectOption = {
   value: 'string,number,object',
   label: 'string',
   disabled: 'boolean',
-};
+}
 
-export const ElCascader = {};
+export const ElCascader = {}
 
-export const ElSwitcher = {};
+export const ElSwitcher = {}
 
-export const ElSlider = {};
+export const ElSlider = {}
 
-export const ElTimerPicker = {};
+export const ElTimerPicker = {}
 
-export const ElDatePicker = {};
+export const ElDatePicker = {}
 
-export const DateTimerPicker = {};
+export const DateTimerPicker = {}
 
-export const ElUpload = {};
+export const ElUpload = {}
 
-export const ElRate = {};
+export const ElRate = {}
 
-export const ElColorPicker = {};
+export const ElColorPicker = {}
 
-export const ElTransfer = {};
+export const ElTransfer = {}
 
-export const ElForm = {};
+export const ElForm = {}
 
 export const ElFormItem = {
   prop: 'string',
@@ -120,4 +120,4 @@ export const ElFormItem = {
   showMessage: 'boolean',
   inlineMessage: 'boolean',
   size: 'string',
-};
+}

@@ -1,16 +1,16 @@
-import ElButtonPro from './ElButtonPro.vue';
-import ElButtonGroupPro from './ElButtonGroupPro.vue';
-import ElInputPro from './ElInputPro.vue';
-import ElSelectPro from './ElSelectPro.vue';
-import ElCheckboxPro from './ElCheckboxPro.vue';
-import ElCheckboxGroupPro from './ElCheckboxGroupPro.vue';
-import ElTablePro from './ElTablePro/index.vue';
-import ElFormPro from './ElFormPro/index.vue';
-import ElRadioGroupPro from './ElRadioGroupPro.vue';
-import ElDatePickerPro from './ElDatePickerPro.vue';
-import ElTimePickerPro from './ElTimePickerPro.vue';
-import ElDialogPro from './ElDialogPro.vue';
-import ElDescriptionPro from './ElDescriptionsPro/index.vue';
+import ElButtonPro from './ElButtonPro.vue'
+import ElButtonGroupPro from './ElButtonGroupPro.vue'
+import ElInputPro from './ElInputPro.vue'
+import ElSelectPro from './ElSelectPro.vue'
+import ElCheckboxPro from './ElCheckboxPro.vue'
+import ElCheckboxGroupPro from './ElCheckboxGroupPro.vue'
+import ElTablePro from './ElTablePro'
+import ElFormPro from './ElFormPro'
+import ElRadioGroupPro from './ElRadioGroupPro'
+import ElDatePickerPro from './ElDatePickerPro.vue'
+import ElDialogPro from './ElDialogPro.vue'
+import ElDescriptionPro from './ElDescriptionsPro/index.vue'
+import ElTreePro from './ElTreePro/index.vue'
 
 const components = [
   ElInputPro,
@@ -20,19 +20,19 @@ const components = [
   ElFormPro,
   ElRadioGroupPro,
   ElDatePickerPro,
-  ElTimePickerPro,
   ElButtonGroupPro,
   ElDialogPro,
   ElDescriptionPro,
   ElButtonPro,
   ElCheckboxPro,
-];
+  ElTreePro,
+]
 
 export default {
   install(Vue) {
     for (const comp of components) {
-      Vue.component(comp.name, comp);
+      Vue.component(comp.name, comp)
     }
   },
-};
-export const VERSION = '2.0.0';
+}
+export const VERSION = '2.0.0'

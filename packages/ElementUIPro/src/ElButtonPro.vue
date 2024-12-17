@@ -1,9 +1,8 @@
 <template>
-  <el-button
-ref="btn" v-bind="$attrs"
-:loading="loading" @click="handleClick"
->
-    <slot>Button</slot>
+  <el-button ref="btn" v-bind="$attrs" :loading="loading" @click="handleClick">
+    <template v-if="$scopedSlots.default">
+      <slot></slot>
+    </template>
   </el-button>
 </template>
 
@@ -13,21 +12,16 @@ export default {
   data() {
     return {
       loading: false,
-    };
-  },
-  emit: ['click'],
-  mounted() {
-    console.log('slots', this.$slots);
-    console.log('scopedSlots', this.$scopedSlots);
+    }
   },
   methods: {
     handleClick(ev) {
-      this.loading = true;
+      this.loading = true
       const done = () => {
-        this.loading = false;
-      };
-      this.$emit('click', done, ev);
+        this.loading = false
+      }
+      this.$emit('click', done, ev)
     },
   },
-};
+}
 </script>
