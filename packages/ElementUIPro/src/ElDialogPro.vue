@@ -2,7 +2,11 @@
   <el-dialog
     v-bind="omit($attrs, 'visible')"
     :visible="innerVisible"
-    :destroy-on-close="destroyOnClose"
+    :title="title"
+    :append-to-body="appendToBody"
+    :class="{
+      'dialog--reset-padding': resetPadding,
+    }"
     v-on="$listeners"
     @update:visible="handleVisible"
   >
@@ -21,9 +25,17 @@ export default {
   mixins: [common],
   props: {
     visible: [Boolean, Object],
-    destroyOnClose: {
+    resetPadding: {
+      type: Boolean,
+      default: false,
+    },
+    appendToBody: {
       type: Boolean,
       default: true,
+    },
+    title: {
+      type: String,
+      default: '',
     },
   },
   computed: {
@@ -51,3 +63,8 @@ export default {
   },
 }
 </script>
+<style>
+.dialog--reset-padding .el-dialog__body {
+  padding: 0px;
+}
+</style>

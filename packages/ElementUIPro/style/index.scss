@@ -1,0 +1,9 @@
+@import "/node_modules/element-ui/packages/theme-chalk/src/common/var.scss";
+
+$--font-path: './element-font';
+$--font-size-base: var(--font-size, $--font-size-base);
+//$--color-primary: var(--primary-color, $--color-primary);
+
+@import './element-rewrite/index-var.scss';
+@import '/node_modules/element-ui/packages/theme-chalk/src/index.scss';
+@import './element-rewrite/index.scss';

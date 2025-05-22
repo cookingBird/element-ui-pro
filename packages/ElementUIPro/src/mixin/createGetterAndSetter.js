@@ -3,47 +3,45 @@ import { getCtxValueSetter, getCtxValueGetter } from './tool'
 export default function createGetterAndSetter(defaultValue = '') {
   return {
     props: {
-      value: [Array, String, Number, Boolean],
-
+      value: { type: [Array, String, Number, Boolean], default: () => defaultValue },
       model: Object,
-
       valueKey: String,
-
       debug: Boolean,
+      afterChange: {
+        type: Function,
+        default: v => v,
+      },
+      beforeValue: {
+        type: Function,
+        default: v => v,
+      },
     },
-
     methods: {
       handleInput(val) {
         if (this.debug) {
           console.log('handleInput', val)
         }
-
         this.valueSetter(val)
       },
-
       valueSetter(val) {
         const { model, valueKey } = this
-
         if (model === undefined || valueKey === undefined) {
-          this.valueSetter = (_val) => {
-            this.$emit('update:value', _val)
+          this.valueSetter = v => {
+            this.$emit('update:value', this.afterChange(v))
           }
         } else {
-          this.valueSetter = getCtxValueSetter.call(this, model, valueKey)
+          this.valueSetter = v => getCtxValueSetter.call(this, model, valueKey)(this.afterChange(v))
         }
-
         this.valueSetter(val)
       },
-
       valueGetter(_model) {
         const { model, valueKey } = this
-
         if (model === undefined || valueKey === undefined) {
-          this.valueGetter = () => this.value
+          this.valueGetter = () => this.beforeValue(this.value)
         } else {
-          this.valueGetter = getCtxValueGetter.call(this, valueKey, defaultValue)
+          this.valueGetter = ctx =>
+            this.beforeValue(getCtxValueGetter.call(this, valueKey, defaultValue)(ctx))
         }
-
         return this.valueGetter(_model)
       },
     },

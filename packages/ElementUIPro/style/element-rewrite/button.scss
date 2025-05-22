@@ -1,0 +1,26 @@
+@import '/node_modules/element-ui/packages/theme-chalk/src/common/var.scss';
+@import '/node_modules/element-ui/packages/theme-chalk/src/mixins/mixins.scss';
+@import '/node_modules/element-ui/packages/theme-chalk/src/mixins/button.scss';
+
+
+//$--button-primary-background-color: var(--el-button-color-primary, #409EFF);
+
+@include b(button) {
+  @include m('primary-outline') {
+    @include button-variant(
+        $--button-primary-background-color,
+        $--color-white,
+        $--button-primary-border-color
+    );
+    background-image: initial;
+    &:hover,
+    &:focus {
+      background-image: initial;
+    }
+  }
+  @include m('text') {
+    &[danger] {
+      color: $--button-danger-background-color;
+    }
+  }
+}

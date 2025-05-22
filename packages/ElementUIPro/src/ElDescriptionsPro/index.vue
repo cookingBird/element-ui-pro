@@ -19,7 +19,7 @@
           </template>
           <template #default>
             <slot :name="getFormItemProp(item)">
-              {{ getValue(item.dict, dictFinder, model, item.prop) }}
+              {{ getValue(item.dict, valueFormatter, model, item.prop) }}
             </slot>
           </template>
         </el-descriptions-item>
@@ -47,22 +47,21 @@
                 </slot>
               </template>
               <template #default>
-                <slot :name="getFormItemProp(item)">
-                  <TypeNode
-                    :model="model"
-                    :data-prop="getFormItemProp(item)"
-                    :value-key="getFormItemProp(item)"
-                    :wrapper-props="item.wrapperProps || item.slotProps?.wrapperProps"
-                    :slot-is="item.slotIs"
-                    :slot-name="item.slotName"
-                    :slot-props="item.slotProps"
-                    :fetch="item.fetch || item.slotProps?.fetch"
-                    :effect-key="item.effectKey || item.slotProps?.effectKey"
-                    :dict="item.dict"
-                    :dict-finder="item.dictFinder"
-                    v-on="item.on"
-                  ></TypeNode>
-                </slot>
+                <slot v-if="item.slotIs === 'slot'" :name="getFormItemProp(item)" />
+                <type-node-vue
+                  v-else
+                  :model="model"
+                  :data-prop="getFormItemProp(item)"
+                  :value-key="getFormItemProp(item)"
+                  :wrapper-props="item.wrapperProps || item.slotProps?.wrapperProps"
+                  :slot-is="item.slotIs"
+                  :slot-props="item.slotProps"
+                  :fetch="item.fetch || item.slotProps?.fetch"
+                  :effect-key="item.effectKey || item.slotProps?.effectKey"
+                  :dict="item.dict"
+                  :value-formatter="item.valueFormatter"
+                  v-on="item.on"
+                />
               </template>
             </el-form-item>
           </el-descriptions-item>
@@ -73,12 +72,12 @@
 </template>
 
 <script>
-import TypeNode from '../ElFormPro/TypeNode.vue'
+import TypeNodeVue from '../ElFormPro/TypeNode.vue'
 import common from '../mixin/common'
 
 export default {
   name: 'ElDescriptionsPro',
-  components: { TypeNode },
+  components: { TypeNodeVue },
   mixins: [common],
   props: {
     options: {
@@ -93,7 +92,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    dictFinder: {
+    valueFormatter: {
       type: Function,
       default: (dict, value) => {
         return dict.find(item => item.code === value)?.name || '--'
@@ -104,10 +103,10 @@ export default {
     getFormItemProp(col) {
       return col.prop || col.formItemProps?.prop
     },
-    getValue(dict, dictFinder, model, valueKey) {
+    getValue(dict, valueFormatter, model, valueKey) {
       let res = this.get(model, valueKey)
       if (dict) {
-        res = dictFinder(dict, res)
+        res = valueFormatter(dict, res)
       }
       return res
     },

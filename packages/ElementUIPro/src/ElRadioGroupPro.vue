@@ -41,13 +41,16 @@ import common from './mixin/common'
 
 export default {
   name: 'ElRadioGroupPro',
+  mixins: [createGetterAndSetter(undefined), dataFetch, common],
   model: {
     prop: 'value',
     event: 'update:value',
   },
-  mixins: [createGetterAndSetter(undefined), dataFetch, common],
   props: {
-    value: [String, Number, Boolean],
+    value: {
+      type: [String, Number, Boolean],
+      default: '',
+    },
     options: Array,
     split: Boolean,
   },

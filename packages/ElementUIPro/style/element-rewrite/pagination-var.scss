@@ -1,0 +1,6 @@
+@import '/node_modules/element-ui/packages/theme-chalk/src/common/var.scss';
+
+$--pagination-font-size: 0.75rem;
+
+$--pagination-background-color: var(--el-pagination-background-color, $--pagination-background-color);
+$--pagination-button-disabled-background-color: var(--el-pagination-button-disabled-background-color, $--pagination-button-disabled-background-color);

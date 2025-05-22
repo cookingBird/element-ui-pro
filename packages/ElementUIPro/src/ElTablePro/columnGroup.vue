@@ -21,7 +21,18 @@
         <template slot="default" slot-scope="contentScope">
           <slot :name="subCol.prop" v-bind="contentScope">
             <template v-if="!subCol.slotIs">
-              {{ getColumnContent(subCol, contentScope) }}
+              <el-tooltip
+                v-if="column.tooltip"
+                v-bind="toObject(column.tooltip)"
+                :content="getColumnContent(column, contentScope)"
+              >
+                <span>
+                  {{ getColumnContent(column, contentScope) }}
+                </span>
+              </el-tooltip>
+              <span v-else>
+                {{ getColumnContent(column, contentScope) }}
+              </span>
             </template>
             <template v-else>
               <TypeComp
@@ -52,15 +63,21 @@ export default {
       type: Object,
       required: true,
     },
+    cellPlaceholder: {
+      type: String,
+      default: '--',
+    },
   },
   methods: {
     handleFormatter(formatter, scope) {
       return formatter(scope.row, scope.column, scope.row[scope.column.prop], scope.$index)
     },
     getColumnContent(column, scope) {
-      return column.formatter
-        ? this.handleFormatter(column.formatter, scope)
-        : scope.row[column.prop]
+      return (
+        (column.formatter
+          ? this.handleFormatter(column.formatter, scope)
+          : scope.row[column.prop]) || this.cellPlaceholder
+      )
     },
   },
 }

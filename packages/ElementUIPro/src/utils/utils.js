@@ -16,6 +16,7 @@ export function getCtxValueGetter(path, fallbackValue) {
         val = val[key] === undefined ? this.$set(val, key, fallbackValue) : val[key]
       }
     })
+    // const val = get(ctx, path, fallbackValue)
     return val
   }
 }
@@ -93,4 +94,9 @@ export function request(model, ctx) {
     })
   }
   throw Error('method not support')
+}
+
+export function toObject(val) {
+  const isObj = Object.prototype.toString.call(val) === '[object Object]'
+  return isObj ? val : {}
 }

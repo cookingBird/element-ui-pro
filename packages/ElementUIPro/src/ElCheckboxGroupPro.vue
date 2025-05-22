@@ -8,7 +8,14 @@
   >
     <template v-for="(item, index) in innerOptions">
       <el-checkbox v-if="typeof item === 'string'" :key="index" :label="item" />
-      <el-checkbox-button v-else-if="item.type === 'button'" :key="index" v-bind="_pickProps(item)">
+      <el-checkbox-button
+        v-else-if="item.type === 'button'"
+        :key="index"
+        v-bind="_pickProps(item)"
+        :class="{
+          'is-round': item.round,
+        }"
+      >
         <slot :name="item.label">
           {{ item.label }}
         </slot>
@@ -41,11 +48,11 @@ export default {
       type: Array,
       default: () => [],
     },
-    selectKey: {
+    map2RowKey: {
       type: Boolean,
       default: false,
     },
-    selectObj: {
+    map2Obj: {
       type: Boolean,
       default: false,
     },
@@ -82,17 +89,17 @@ export default {
   },
   methods: {
     _pickProps(item) {
-      return this.pick(item, 'label', 'disabled', 'border', 'size')
+      return this.pick(item, 'label', 'disabled', 'border', 'size', 'round')
     },
     _mapInnerValue(value) {
-      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this
-      if (selectKey) {
+      const { map2RowKey, map2Obj, innerOptions, labelKey, rowKey } = this
+      if (map2RowKey) {
         this._mapInnerValue = _value =>
           _value
             .map(key => innerOptions.find(item => item[rowKey] === key))
             .filter(Boolean)
             .map(i => i[labelKey])
-      } else if (selectObj) {
+      } else if (map2Obj) {
         this._mapInnerValue = _value =>
           _value
             // .map((key) => innerOptions.find((item) => item[rowKey] === key))
@@ -105,8 +112,8 @@ export default {
       return this._mapInnerValue(value)
     },
     _setInnerValue(value) {
-      const { selectKey, selectObj, innerOptions, labelKey, rowKey } = this
-      if (selectKey) {
+      const { map2RowKey, map2Obj, innerOptions, labelKey, rowKey } = this
+      if (map2RowKey) {
         this._setInnerValue = _value => {
           this.handleInput(
             _value
@@ -117,7 +124,7 @@ export default {
               .map(i => i[rowKey])
           )
         }
-      } else if (selectObj) {
+      } else if (map2Obj) {
         this._setInnerValue = _value => {
           this.handleInput(
             _value
@@ -138,17 +145,26 @@ export default {
 </script>
 <style lang="scss">
 .el-checkbox-group-pro.el-checkbox-group[data-split='true'] {
-  --gutter: 2rem;
-  .el-checkbox-button + .el-checkbox-button {
-    margin-inline-start: var(--gutter);
-  }
-  .el-checkbox-button.is-focus .el-checkbox-button__inner {
-    border-left: 1px solid #409eff;
-  }
-  .el-checkbox-button__inner {
-    border-left: 1px solid #dcdfe6;
-    border-radius: 4px;
-    box-shadow: none !important;
+  --gutter: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gutter);
+  .el-checkbox-button {
+    &.is-focus {
+      .el-checkbox-button__inner {
+        border-left: 1px solid #409eff;
+      }
+    }
+    &.is-round {
+      .el-checkbox-button__inner {
+        border-radius: 14px;
+      }
+    }
+    .el-checkbox-button__inner {
+      border-left: 1px solid #dcdfe6;
+      border-radius: 4px;
+      box-shadow: none !important;
+    }
   }
 }
 </style>

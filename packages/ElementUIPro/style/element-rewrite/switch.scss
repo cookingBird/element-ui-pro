@@ -1,0 +1,36 @@
+@import "/node_modules/element-ui/packages/theme-chalk/src/common/var.scss";
+@import "/node_modules/element-ui/packages/theme-chalk/src/mixins/mixins.scss";
+
+
+@include b(switch) {
+
+  @include e(label) {
+
+    color: var(--el-switch-text-color, $--color-text-primary);
+
+    @include when(active) {
+      color: var(--el-switch-text-active-color, $--color-primary);
+    }
+
+    & * {
+      line-height: var(--el-switch-line-height, 1);
+    }
+  }
+
+  @include when(checked) {
+    .el-switch__core {
+
+      &::after {
+        left: 100%;
+        margin-left: calc(#{$--switch-button-size} * -1 - 1px);
+      }
+    }
+  }
+}
+
+
+@include b(switch) {
+  @include m(mini) {
+    --el-switch-font-size: 0.75rem;
+  }
+}

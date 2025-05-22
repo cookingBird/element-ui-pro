@@ -1,4 +1,4 @@
-import { pick, omit, merge, get } from 'lodash'
+import { pick, omit, merge, get, debounce } from 'lodash'
 
 export default {
   methods: {
@@ -6,5 +6,6 @@ export default {
     omit,
     merge,
     get,
+    debounce,
   },
 }

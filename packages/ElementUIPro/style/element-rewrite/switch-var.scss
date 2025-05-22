@@ -1,0 +1,10 @@
+@import "/node_modules/element-ui/packages/theme-chalk/src/common/var.scss";
+@import "/node_modules/element-ui/packages/theme-chalk/src/mixins/mixins.scss";
+
+
+$--switch-off-color: var(--el-switch-off-color, $--switch-off-color);
+$--switch-on-color: var(--el-switch-on-color, $--switch-on-color);
+$--switch-font-size: var(--el-switch-font-size, $--switch-font-size);
+$--switch-height: var(--el-switch-height, $--switch-height);
+$--switch-core-border-radius: var(--el-switch-core-radius, $--switch-core-border-radius);
+$--switch-button-size: var(--el-switch-button-size, $--switch-button-size);

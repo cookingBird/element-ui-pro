@@ -7,7 +7,7 @@
         v-bind="omit(item, 'if', 'label')"
         v-on="item.on"
       >
-        <slot :name="item.label">
+        <slot :name="item.label" v-bind="item">
           {{ item.label }}
         </slot>
       </ElButtonPro>
@@ -20,8 +20,9 @@
         :key="index"
         v-bind="omit(item, 'if', 'listeners', 'label')"
         v-on="item.on"
+        @click="() => onClick(item)"
       >
-        <slot :name="item.label">
+        <slot :name="item.label" v-bind="item">
           {{ item.label }}
         </slot>
       </ElButtonPro>
@@ -48,6 +49,9 @@ export default {
   },
   methods: {
     omit,
+    onClick(item) {
+      this.$emit('click', item)
+    },
   },
 }
 </script>
@@ -58,13 +62,16 @@ export default {
   all: initial;
   display: flex;
   align-items: center;
+
   .el-button--primary {
     line-height: 1em;
   }
+
   .el-button {
     padding-inline: var(--padding-inline);
     padding-block: var(--padding-block);
   }
+
   .el-button + .el-button {
     margin: initial;
   }

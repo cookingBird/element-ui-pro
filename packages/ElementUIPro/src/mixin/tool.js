@@ -1,4 +1,4 @@
-import { get } from 'lodash'
+import { get, set } from 'lodash'
 import Ajax from '../utils/Ajax'
 
 /** @description 以.访问符获取一个ctx中的某一字段值 */
@@ -11,32 +11,26 @@ export function getCtxValueGetter(path, fallbackValue) {
     let val = ctx
     fileds.forEach((key, index) => {
       if (index < fileds.length - 1) {
-        val = val[key] === undefined ? this.$set(val, key, {}) : val[key]
+        val = val[key] ?? this.$set(val, key, {})
       } else {
-        val = val[key] === undefined ? this.$set(val, key, fallbackValue) : val[key]
+        val = val[key] ?? this.$set(val, key, fallbackValue)
       }
     })
     return val
   }
 }
 
-/** @description 以.访问符设置一个ctx中的某些字段值 */
+/**
+ * @description 以.访问符设置一个ctx中的某些字段值
+ * @param {object} ctx
+ * @param {string} filedLike
+ */
 export function getCtxValueSetter(ctx, filedLike) {
-  if (filedLike) {
-    const fileds = filedLike.split('.')
-    const length = fileds.length
-    return value => {
-      let context = ctx
-      fileds.forEach((key, index) => {
-        if (index < length - 1) {
-          context = context[key]
-        } else {
-          context[key] = value
-        }
-      })
-    }
+  if (!filedLike) throw Error('filedLike is required')
+  if (typeof ctx !== 'object') throw Error('ctx is not object')
+  return value => {
+    set(ctx, filedLike, value)
   }
-  throw Error('leak filedLike param ')
 }
 
 /**

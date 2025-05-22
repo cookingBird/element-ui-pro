@@ -11,6 +11,12 @@ import ElDatePickerPro from './ElDatePickerPro.vue'
 import ElDialogPro from './ElDialogPro.vue'
 import ElDescriptionPro from './ElDescriptionsPro/index.vue'
 import ElTreePro from './ElTreePro/index.vue'
+import ElFormItemPro from './ElFormPro/FormItemPro.vue'
+import ElPaginationPro from './ElPaginationPro.vue'
+import ElPopoverPro from './ElPopoverPro/index.vue'
+import ElUploadPro from './ElUploadPro/index.vue'
+import ElColorPickerPro from './ElColorPickerPro/index.vue'
+import ElSwitchPro from './ElSwitchPro/index.vue'
 
 const components = [
   ElInputPro,
@@ -26,6 +32,12 @@ const components = [
   ElButtonPro,
   ElCheckboxPro,
   ElTreePro,
+  ElFormItemPro,
+  ElPaginationPro,
+  ElPopoverPro,
+  ElUploadPro,
+  ElColorPickerPro,
+  ElSwitchPro,
 ]
 
 export default {
